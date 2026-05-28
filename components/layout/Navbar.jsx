@@ -23,13 +23,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const goSection = (hash) => {
+  const navigateTo = (target) => {
     setMobileOpen(false);
-    if (pathname !== "/") {
-      router.push(`/${hash}`);
+    if (!target.startsWith("#")) {
+      router.push(target);
       return;
     }
-    scrollToSection(hash);
+    if (pathname !== "/") {
+      router.push(`/${target}`);
+      return;
+    }
+    scrollToSection(target);
   };
 
   const links = [
@@ -38,6 +42,7 @@ export default function Navbar() {
     { k: t.nav.services, h: "#services" },
     { k: t.nav.industries, h: "#industries" },
     { k: t.nav.contact, h: "#contact" },
+    { k: t.nav.team, h: "/careers" },
   ];
 
   return (
@@ -54,7 +59,7 @@ export default function Navbar() {
             <button
               key={l.h}
               data-testid={`nav-link-${l.h.slice(1)}`}
-              onClick={() => goSection(l.h)}
+              onClick={() => navigateTo(l.h)}
               className="px-4 py-2 text-sm font-medium text-[#151515] hover:text-[#C8370B] transition-colors"
             >
               {l.k}
@@ -65,7 +70,7 @@ export default function Navbar() {
           <LanguageSwitcher />
           <button
             data-testid="navbar-cta-btn"
-            onClick={() => goSection("#contact")}
+            onClick={() => navigateTo("#contact")}
             className="btn-primary hidden md:inline-flex"
           >
             <span>{t.nav.cta}</span>
@@ -89,18 +94,12 @@ export default function Navbar() {
             {links.map((l) => (
               <button
                 key={l.h}
-                onClick={() => goSection(l.h)}
+                onClick={() => navigateTo(l.h)}
                 className="text-left py-3 text-base font-semibold text-[#151515] border-b border-[#151515]/8"
               >
                 {l.k}
               </button>
             ))}
-            <button onClick={() => goSection("#contact")} className="btn-primary mt-4 self-start">
-              <span>{t.nav.cta}</span>
-              <span className="arrow-pill">
-                <ArrowUpRight size={16} color="#fff" />
-              </span>
-            </button>
           </div>
         </div>
       )}

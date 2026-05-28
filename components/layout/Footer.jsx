@@ -13,12 +13,16 @@ export default function Footer() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const goSection = (hash) => {
-    if (pathname !== "/") {
-      router.push(`/${hash}`);
+  const navigateTo = (target) => {
+    if (!target.startsWith("#")) {
+      router.push(target);
       return;
     }
-    scrollToSection(hash);
+    if (pathname !== "/") {
+      router.push(`/${target}`);
+      return;
+    }
+    scrollToSection(target);
   };
 
   return (
@@ -56,7 +60,7 @@ export default function Footer() {
               {t.footer.links_items.map((l) => (
                 <li key={l.h}>
                   <button
-                    onClick={() => goSection(l.h)}
+                    onClick={() => navigateTo(l.h)}
                     className="text-white/85 hover:text-[#F66234] transition-colors"
                   >
                     {l.k}
@@ -76,11 +80,7 @@ export default function Footer() {
           </div>
           <div>
             <div className="label-pill text-white/40 mb-4">{t.footer.network}</div>
-            <p className="text-white/70 text-sm leading-relaxed mb-5">
-              {t.footer.network === "Únete a la red"
-                ? "¿Eres mecánico móvil? Construye tu carrera con la red Autech."
-                : "Mobile mechanic? Build your career with the Autech network."}
-            </p>
+            <p className="text-white/70 text-sm leading-relaxed mb-5">{t.footer.network_body}</p>
             <Link href="/careers" className="btn-primary" style={{ background: "#C8370B", borderColor: "#C8370B" }}>
               <span>{t.footer.network_cta}</span>
               <span className="arrow-pill" style={{ background: "#151515" }}>
