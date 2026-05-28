@@ -46,9 +46,6 @@ export const metadata = {
     title: "Autech LLC — Mobile Fleet Mechanics",
     description: "Soporte técnico de flotas sin fronteras. Red móvil certificada.",
   },
-  icons: {
-    icon: "https://customer-assets.emergentagent.com/job_147afd9a-d9b2-4013-8897-cdb34863bb32/artifacts/wp2s29lw_autech_logo.png",
-  },
 };
 
 export default function RootLayout({ children }) {

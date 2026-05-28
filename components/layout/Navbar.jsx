@@ -47,7 +47,7 @@ export default function Navbar() {
     >
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 py-3 flex items-center justify-between gap-6">
         <Link href="/" data-testid="navbar-logo" className="shrink-0 flex items-center">
-          <Logo variant="dark" />
+          <Logo />
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
           {links.map((l) => (

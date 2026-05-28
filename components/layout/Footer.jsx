@@ -36,7 +36,7 @@ export default function Footer() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <Logo variant="light" />
+            <Logo />
             <p className="text-white/60 text-sm leading-relaxed max-w-xs mt-5">{t.footer.tagline}.</p>
             <div className="flex items-center gap-3 mt-5">
               {[Linkedin, Instagram, Facebook].map((Icon, i) => (
