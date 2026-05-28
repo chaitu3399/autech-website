@@ -1,7 +1,7 @@
 import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/language-provider";
-import { SiteScaffold } from "@/components/site-ui";
+import SiteScaffold from "@/components/layout/SiteScaffold";
 
 const archivo = Archivo({
   variable: "--font-archivo",
