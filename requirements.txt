@@ -1,0 +1,3163 @@
+package.json
+
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
+    "@radix-ui/react-accordion": "^1.2.8",
+    "@radix-ui/react-alert-dialog": "^1.1.11",
+    "@radix-ui/react-aspect-ratio": "^1.1.4",
+    "@radix-ui/react-avatar": "^1.1.7",
+    "@radix-ui/react-checkbox": "^1.2.3",
+    "@radix-ui/react-collapsible": "^1.1.8",
+    "@radix-ui/react-context-menu": "^2.2.12",
+    "@radix-ui/react-dialog": "^1.1.11",
+    "@radix-ui/react-dropdown-menu": "^2.1.12",
+    "@radix-ui/react-hover-card": "^1.1.11",
+    "@radix-ui/react-label": "^2.1.4",
+    "@radix-ui/react-menubar": "^1.1.12",
+    "@radix-ui/react-navigation-menu": "^1.2.10",
+    "@radix-ui/react-popover": "^1.1.11",
+    "@radix-ui/react-progress": "^1.1.4",
+    "@radix-ui/react-radio-group": "^1.3.4",
+    "@radix-ui/react-scroll-area": "^1.2.6",
+    "@radix-ui/react-select": "^2.2.2",
+    "@radix-ui/react-separator": "^1.1.4",
+    "@radix-ui/react-slider": "^1.3.2",
+    "@radix-ui/react-slot": "^1.2.0",
+    "@radix-ui/react-switch": "^1.2.2",
+    "@radix-ui/react-tabs": "^1.1.9",
+    "@radix-ui/react-toast": "^1.2.11",
+    "@radix-ui/react-toggle": "^1.1.6",
+    "@radix-ui/react-toggle-group": "^1.1.7",
+    "@radix-ui/react-tooltip": "^1.2.4",
+    "axios": "^1.8.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "cra-template": "1.2.0",
+    "date-fns": "^4.1.0",
+    "embla-carousel-react": "^8.6.0",
+    "input-otp": "^1.4.2",
+    "lucide-react": "^0.507.0",
+    "next-themes": "^0.4.6",
+    "react": "^19.0.0",
+    "react-day-picker": "8.10.1",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.2",
+    "react-resizable-panels": "^3.0.1",
+    "react-router-dom": "^7.5.1",
+    "react-scripts": "5.0.1",
+    "recharts": "^3.6.0",
+    "sonner": "^2.0.3",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^1.1.2",
+    "zod": "^3.24.4"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@craco/craco": "^7.1.0",
+    "@emergentbase/visual-edits": "https://assets.emergent.sh/npm/emergentbase-visual-edits-1.0.8.tgz",
+    "@eslint/js": "9.23.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "9.23.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.4",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "globals": "15.15.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
+
+
+
+
+App.js
+import { useEffect } from "react";
+import "@/App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
+const Home = () => {
+  const helloWorldApi = async () => {
+    try {
+      const response = await axios.get(`${API}/`);
+      console.log(response.data.message);
+    } catch (e) {
+      console.error(e, `errored out requesting / api`);
+    }
+  };
+
+  useEffect(() => {
+    helloWorldApi();
+  }, []);
+
+  return (
+    <div>
+      <header className="App-header">
+        <a
+          className="App-link"
+          href="https://emergent.sh"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
+        </a>
+        <p className="mt-5">Building something incredible ~!</p>
+      </header>
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route index element={<Home />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+
+
+App.css
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #0f0f10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family:
+        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 3.9%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+        --radius: 0.5rem;
+    }
+    .dark {
+        --background: 0 0% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --secondary: 0 0% 14.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 14.9%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
+
+
+tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    darkMode: ["class"],
+    content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html"
+  ],
+  theme: {
+        extend: {
+                borderRadius: {
+                        lg: 'var(--radius)',
+                        md: 'calc(var(--radius) - 2px)',
+                        sm: 'calc(var(--radius) - 4px)'
+                },
+                colors: {
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        card: {
+                                DEFAULT: 'hsl(var(--card))',
+                                foreground: 'hsl(var(--card-foreground))'
+                        },
+                        popover: {
+                                DEFAULT: 'hsl(var(--popover))',
+                                foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        primary: {
+                                DEFAULT: 'hsl(var(--primary))',
+                                foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                                DEFAULT: 'hsl(var(--secondary))',
+                                foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        muted: {
+                                DEFAULT: 'hsl(var(--muted))',
+                                foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                                DEFAULT: 'hsl(var(--accent))',
+                                foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        destructive: {
+                                DEFAULT: 'hsl(var(--destructive))',
+                                foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        chart: {
+                                '1': 'hsl(var(--chart-1))',
+                                '2': 'hsl(var(--chart-2))',
+                                '3': 'hsl(var(--chart-3))',
+                                '4': 'hsl(var(--chart-4))',
+                                '5': 'hsl(var(--chart-5))'
+                        }
+                },
+                keyframes: {
+                        'accordion-down': {
+                                from: {
+                                        height: '0'
+                                },
+                                to: {
+                                        height: 'var(--radix-accordion-content-height)'
+                                }
+                        },
+                        'accordion-up': {
+                                from: {
+                                        height: 'var(--radix-accordion-content-height)'
+                                },
+                                to: {
+                                        height: '0'
+                                }
+                        }
+                },
+                animation: {
+                        'accordion-down': 'accordion-down 0.2s ease-out',
+                        'accordion-up': 'accordion-up 0.2s ease-out'
+                }
+        }
+  },
+  plugins: [require("tailwindcss-animate")],
+};
+
+
+index.html
+
+"<!DOCTYPE html>
+<html lang=\"es\">
+  <head>
+    <meta charset=\"utf-8\" />
+    <link rel=\"icon\" href=\"https://customer-assets.emergentagent.com/job_147afd9a-d9b2-4013-8897-cdb34863bb32/artifacts/wp2s29lw_autech_logo.png\" />
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5\" />
+    <meta name=\"theme-color\" content=\"#151515\" />
+
+    <title>Autech LLC — Soporte Técnico de Flotas Sin Fronteras</title>
+    <meta name=\"description\" content=\"Autech LLC es una red móvil de mecánicos certificados especializada en flotas comerciales, vehículos pesados y generadores industriales. Servicio in situ desde el Caribe hasta los EE.UU.\" />
+    <meta name=\"keywords\" content=\"mecánico móvil, flotas comerciales, generadores industriales, mantenimiento preventivo, mobile fleet mechanic, commercial truck repair, NASTF, heavy duty diesel, Puerto Rico, Florida\" />
+    <meta name=\"author\" content=\"Autech LLC\" />
+
+    <!-- Open Graph -->
+    <meta property=\"og:type\" content=\"website\" />
+    <meta property=\"og:title\" content=\"Autech LLC — Mobile Fleet Mechanics\" />
+    <meta property=\"og:description\" content=\"Soporte técnico de flotas sin fronteras. Red móvil certificada para vehículos comerciales y generadores industriales.\" />
+    <meta property=\"og:image\" content=\"https://customer-assets.emergentagent.com/job_147afd9a-d9b2-4013-8897-cdb34863bb32/artifacts/wp2s29lw_autech_logo.png\" />
+    <meta property=\"og:locale\" content=\"es_PR\" />
+    <meta property=\"og:locale:alternate\" content=\"en_US\" />
+
+    <!-- Twitter -->
+    <meta name=\"twitter:card\" content=\"summary_large_image\" />
+    <meta name=\"twitter:title\" content=\"Autech LLC — Mobile Fleet Mechanics\" />
+    <meta name=\"twitter:description\" content=\"Soporte técnico de flotas sin fronteras. Red móvil certificada.\" />
+
+    <!-- Google Fonts -->
+    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />
+    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />
+    <link href=\"https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap\" rel=\"stylesheet\" />
+
+    <!-- Structured Data -->
+    <script type=\"application/ld+json\">
+    {
+      \"@context\": \"https://schema.org\",
+      \"@type\": \"AutomotiveBusiness\",
+      \"name\": \"Autech LLC\",
+      \"description\": \"Mobile fleet service network for commercial vehicles and industrial generators.\",
+      \"url\": \"https://autechsys.com\",
+      \"telephone\": \"+1-787-000-0000\",
+      \"email\": \"service@autechsys.com\",
+      \"areaServed\": [\"US\", \"PR\"],
+      \"address\": {
+        \"@type\": \"PostalAddress\",
+        \"addressLocality\": \"Aguada\",
+        \"addressRegion\": \"PR\",
+        \"addressCountry\": \"US\"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id=\"root\"></div>
+  </body>
+</html>
+"
+
+robots.txt
+
+"User-agent: *
+Allow: /
+
+Sitemap: https://autechsys.com/sitemap.xml
+"
+
+sitemap.xml
+
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">
+  <url>
+    <loc>https://autechsys.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://autechsys.com/careers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
+"
+
+index.css
+
+"@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Autech brand palette */
+  --autech-black: #151515;
+  --autech-jet: #191919;
+  --autech-burnt: #C8370B;
+  --autech-orange: #F66234;
+  --autech-red-brown: #9E3211;
+  --autech-off-white: #F6F6F6;
+  --autech-silver: #A7A3A2;
+  --autech-light-gray: #D1D1D1;
+  --autech-dim: #5C5C5C;
+
+  /* shadcn tokens mapped to brand */
+  --background: 0 0% 96.5%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 0 0% 8%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 92%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 0 0% 92%;
+  --muted-foreground: 0 0% 36%;
+  --accent: 16 90% 41%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 85%;
+  --input: 0 0% 88%;
+  --ring: 16 90% 41%;
+  --radius: 0.25rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--autech-off-white);
+  color: var(--autech-black);
+  font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: 'ss01', 'cv01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Display headlines */
+.font-display {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Tiny label like \"+ ABOUT US\" */
+.label-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Noise grain overlay */
+.noise-bg::before {
+  content: \"\";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\");
+}
+
+/* Dashed vertical guides (Manufact signature) */
+.dash-guides {
+  background-image:
+    linear-gradient(to right, transparent 0, transparent calc(8.333% - 0.5px), rgba(21,21,21,0.07) calc(8.333% - 0.5px), rgba(21,21,21,0.07) calc(8.333% + 0.5px), transparent calc(8.333% + 0.5px));
+  background-size: 12.5% 100%;
+}
+
+.dash-guides-dark {
+  background-image:
+    linear-gradient(to right, transparent 0, transparent calc(8.333% - 0.5px), rgba(255,255,255,0.06) calc(8.333% - 0.5px), rgba(255,255,255,0.06) calc(8.333% + 0.5px), transparent calc(8.333% + 0.5px));
+  background-size: 12.5% 100%;
+}
+
+/* Orange accent color utilities */
+.text-burnt { color: var(--autech-burnt); }
+.bg-burnt { background-color: var(--autech-burnt); }
+.bg-orange-glow { background-color: var(--autech-orange); }
+.text-orange-glow { color: var(--autech-orange); }
+.bg-autech-black { background-color: var(--autech-black); }
+.bg-jet { background-color: var(--autech-jet); }
+.text-autech-black { color: var(--autech-black); }
+.bg-offwhite { background-color: var(--autech-off-white); }
+.border-autech { border-color: rgba(21,21,21,0.12); }
+.border-autech-dark { border-color: rgba(255,255,255,0.1); }
+
+/* Button — black with orange arrow */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 8px 14px 22px;
+  background: var(--autech-black);
+  color: #fff;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  border: 1px solid var(--autech-black);
+  transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1), background 0.25s;
+  cursor: pointer;
+}
+.btn-primary:hover { background: var(--autech-jet); transform: translateY(-1px); }
+.btn-primary .arrow-pill {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: var(--autech-burnt);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1);
+}
+.btn-primary:hover .arrow-pill { transform: translateX(4px) rotate(-45deg); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: transparent;
+  color: var(--autech-black);
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(21,21,21,0.2);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(--autech-burnt); color: var(--autech-burnt); }
+
+.btn-ghost-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: transparent;
+  color: #fff;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.btn-ghost-dark:hover { border-color: var(--autech-orange); color: var(--autech-orange); }
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+/* Section reveal */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { animation: fadeUp 0.9s cubic-bezier(0.2,0.8,0.2,1) both; }
+.reveal-delay-1 { animation-delay: 0.1s; }
+.reveal-delay-2 { animation-delay: 0.2s; }
+.reveal-delay-3 { animation-delay: 0.3s; }
+
+/* Selection */
+::selection { background: var(--autech-burnt); color: #fff; }
+
+/* Scrollbar (subtle) */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--autech-off-white); }
+::-webkit-scrollbar-thumb { background: var(--autech-light-gray); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--autech-burnt); }
+
+/* WhatsApp float pulse */
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.wa-pulse { animation: pulseRing 2.4s infinite; }
+
+/* Form inputs */
+.autech-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(21,21,21,0.18);
+  padding: 14px 2px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  color: var(--autech-black);
+  outline: none;
+  transition: border-color 0.25s;
+}
+.autech-input:focus { border-bottom-color: var(--autech-burnt); }
+.autech-input::placeholder { color: rgba(21,21,21,0.4); }
+
+.autech-input-dark {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  padding: 14px 2px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.25s;
+}
+.autech-input-dark:focus { border-bottom-color: var(--autech-orange); }
+.autech-input-dark::placeholder { color: rgba(255,255,255,0.4); }
+
+/* Card hover */
+.tilt-card {
+  transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), border-color 0.3s;
+}
+.tilt-card:hover { transform: translateY(-4px); border-color: var(--autech-burnt); }
+"
+
+App.css
+".App {
+  min-height: 100vh;
+  background: var(--autech-off-white);
+}
+"
+
+translation.js
+
+"// Autech i18n dictionary — ES default, EN secondary
+export const translations = {
+  es: {
+    nav: {
+      home: \"Inicio\",
+      about: \"Nosotros\",
+      services: \"Servicios\",
+      industries: \"Industrias\",
+      contact: \"Contacto\",
+      cta: \"Solicitar Servicio\",
+    },
+    hero: {
+      tag: \"Especialistas en Flotas Comerciales · Cobertura Nacional\",
+      title_a: \"Su flota\",
+      title_b: \"nunca se detiene.\",
+      sub: \"Autech es una red móvil de mecánicos certificados diseñada para llegar a los operadores comerciales donde están. Desde tractocamiones y camiones rígidos hasta vehículos vocacionales — respondemos rápido, trabajamos con eficiencia y documentamos todo lo que su equipo de gestión de flota necesita.\",
+      cta_a: \"Solicitar Servicio\",
+      cta_b: \"Quiénes Somos\",
+      stats: [
+        { k: \"24/7\", v: \"Despacho disponible\" },
+        { k: \"50+\", v: \"Estados cubiertos\" },
+        { k: \"0mi\", v: \"Meta de inactividad\" },
+      ],
+    },
+    strip: [
+      \"Mantenimiento Preventivo\", \"Reparación en Carretera\", \"Diagnóstico de Motor\",
+      \"Servicio de Frenos\", \"Inspecciones DOT\", \"Sistemas Eléctricos\",
+      \"Servicio de Transmisión\", \"Cambio de Fluidos\", \"Llantas y Ruedas\",
+      \"Contratos de Flota\", \"Programación NASTF\", \"Generadores Industriales\",
+    ],
+    about: {
+      label: \"Sobre Autech\",
+      title_a: \"Construido para\",
+      title_b: \"el camino que viene.\",
+      body: \"Autech no es un taller de reparación — somos una red de servicio móvil de flotas diseñada para atender a los operadores comerciales en su ubicación. Como profesionales registrados en NASTF, integramos reparación mecánica con diagnóstico electrónico autorizado para que su equipo vuelva a operar sin tiempo muerto.\",
+      pillars: [
+        { t: \"Primero Móvil\", d: \"Vamos a su ubicación — depósito, obra o carretera.\" },
+        { t: \"Técnicos Certificados\", d: \"Profesionales ASE con experiencia en vehículos pesados.\" },
+        { t: \"Red Nacional\", d: \"Cobertura técnica en expansión a los 50 estados.\" },
+        { t: \"Cuentas de Flota\", d: \"Contratos, reportes y despacho prioritario para flotas.\" },
+      ],
+    },
+    why: {
+      label: \"Por qué nos eligen\",
+      title: \"Operadores serios eligen Autech.\",
+      items: [
+        \"Respuesta más rápida que la visita al taller — sin grúa, sin filas de espera.\",
+        \"Registros digitales de servicio enviados directo a su gerente de flota tras cada trabajo.\",
+        \"Tarifas transparentes y planas. Sin cargos ocultos en su factura.\",
+        \"Línea de despacho 24/7 — porque las averías no respetan horarios de oficina.\",
+        \"Auditoría estricta de costos de piezas y mano de obra para proteger su presupuesto.\",
+      ],
+      badge: \"100% Servicio Móvil\",
+    },
+    services: {
+      label: \"Capacidades\",
+      title_a: \"Capacidad escalable\",
+      title_b: \"para cada desafío.\",
+      items: [
+        {
+          t: \"Vehículos Comerciales Pesados\",
+          d: \"Reparación mecánica y mantenimiento preventivo para tractocamiones, camiones rígidos y vehículos vocacionales.\",
+          feats: [\"Diagnóstico de motor diésel\", \"Servicio de frenos y suspensión\", \"Sistemas CAN bus y ECU\"],
+        },
+        {
+          t: \"Generadores Industriales\",
+          d: \"Mantenimiento programado y reparación para sistemas de alta capacidad en instalaciones críticas.\",
+          feats: [\"Mantenimiento preventivo programado\", \"Reparación de transferencia automática\", \"Pruebas de carga\"],
+        },
+        {
+          t: \"Diagnóstico y Programación NASTF\",
+          d: \"Como profesionales registrados NASTF, programamos e inicializamos módulos de seguridad y motor.\",
+          feats: [\"Inicialización de ECU\", \"Programación VSP autorizada\", \"Seguridad vehicular\"],
+        },
+        {
+          t: \"Contratos de Flota\",
+          d: \"Programas a medida con reportes digitales, despacho prioritario y auditoría de costos.\",
+          feats: [\"Reportes en tiempo real\", \"Auditoría de costos\", \"SLA dedicado\"],
+        },
+      ],
+    },
+    industries: {
+      label: \"Sectores estratégicos\",
+      title_a: \"Soluciones para\",
+      title_b: \"industrias críticas.\",
+      items: [
+        { t: \"Aeropuertos\", d: \"Soporte técnico para vehículos de seguridad y carga en entornos de alta seguridad.\" },
+        { t: \"Logística y Carga\", d: \"Flotas de transporte continental que dependen de tiempos de respuesta estrictos.\" },
+        { t: \"Marítimo y Puertos\", d: \"Equipos vocacionales y generadores en operaciones portuarias 24/7.\" },
+        { t: \"Federal y Comercial\", d: \"Coordinación con agencias federales y flotas comerciales globales.\" },
+      ],
+    },
+    cta_banner: {
+      title_a: \"Listo para iniciar\",
+      title_b: \"su próximo despacho?\",
+      btn: \"Solicitar Servicio\",
+    },
+    contact: {
+      label: \"Entre en contacto\",
+      title_a: \"Mantengamos su\",
+      title_b: \"flota rodando.\",
+      body: \"Solicite un servicio, una cotización de contrato de flota o consulte sobre nuestra red. Nuestro equipo responde dentro de una hora hábil durante el horario de despacho.\",
+      info: [
+        { k: \"Línea de Despacho\", v: \"+1 (787) 000-0000\" },
+        { k: \"Correo\", v: \"service@autechsys.com\" },
+        { k: \"Horario\", v: \"24 / 7 — 365 días\" },
+        { k: \"Administración\", v: \"Aguada, Puerto Rico\" },
+      ],
+      form: {
+        first: \"Nombre\",
+        last: \"Apellido\",
+        company: \"Empresa / Flota\",
+        phone: \"Teléfono\",
+        email: \"Correo Electrónico\",
+        type: \"Tipo de Consulta\",
+        type_options: [\"Selecciona...\", \"Solicitud de Servicio\", \"Cotización de Contrato de Flota\", \"Unirme como Técnico\", \"Consulta General\"],
+        message: \"Describa su vehículo, ubicación, problema o cómo podemos ayudar...\",
+        submit: \"Enviar Mensaje\",
+        success: \"✓ Mensaje enviado — nos pondremos en contacto pronto.\",
+      },
+    },
+    footer: {
+      tagline: \"Red Élite de Mecánica Móvil\",
+      links: \"Enlaces\",
+      links_items: [
+        { k: \"Inicio\", h: \"#home\" },
+        { k: \"Nosotros\", h: \"#about\" },
+        { k: \"Servicios\", h: \"#services\" },
+        { k: \"Industrias\", h: \"#industries\" },
+        { k: \"Contacto\", h: \"#contact\" },
+      ],
+      network: \"Únete a la red\",
+      network_cta: \"Aplicar como Técnico\",
+      contact_block: \"Contacto\",
+      hours: \"24 / 7 — 365 días\",
+      address: \"Aguada, Puerto Rico\",
+      rights: \"© 2026 AUTECH LLC. Todos los derechos reservados.\",
+    },
+    careers: {
+      label: \"Únete a la red\",
+      title_a: \"Construye tu carrera\",
+      title_b: \"en la carretera.\",
+      sub: \"Buscamos mecánicos móviles independientes, listos para crecer con una operación enfocada en flotas comerciales. Si eres un técnico diésel experimentado o estás expandiéndote al trabajo comercial — Autech te da la plataforma, despacho y cuentas.\",
+      perks_title: \"Por qué unirte\",
+      perks: [
+        \"Trabajos despachados a tu zona — sin búsqueda fría.\",
+        \"Tú decides tu territorio de cobertura.\",
+        \"Estructura de pago competitiva con ciclos rápidos.\",
+        \"Soporte total de back-office: facturación, reportes, cuentas.\",
+        \"Crecimiento a técnico líder conforme la red se expande.\",
+      ],
+      reqs_title: \"Requisitos para unirte\",
+      reqs: [
+        {
+          t: \"1. Autorización Legal y de Seguridad (No negociable)\",
+          items: [
+            \"Antecedentes criminales limpios — verificaciones federales y estatales rigurosas.\",
+            \"Elegibilidad NASTF VSP — Vehicle Security Professional.\",
+            \"Historial de conducción impecable y licencia válida.\",
+          ],
+        },
+        {
+          t: \"2. Experiencia Técnica y Electromecánica\",
+          items: [
+            \"Mínimo 3–5 años en reparación de flotas pesadas o generadores industriales.\",
+            \"Diagnóstico avanzado de fallas electromecánicas, CAN bus y ECU.\",
+            \"Certificación ASE Medium-Heavy Truck y/o EGSA preferida.\",
+          ],
+        },
+        {
+          t: \"3. Competencia Digital\",
+          items: [
+            \"Manejo de software FSM (Field Service Management) vía tablet/smartphone.\",
+            \"Cumplimiento estricto de protocolos digitales y 2FA obligatorio.\",
+          ],
+        },
+        {
+          t: \"4. Mentalidad Operativa\",
+          items: [
+            \"Operación 100% móvil — sin taller fijo.\",
+            \"Logística precisa de herramientas e inventario en vehículo de despacho.\",
+          ],
+        },
+      ],
+      form_title: \"Aplicación de Técnico\",
+      form: {
+        first: \"Nombre\",
+        last: \"Apellido\",
+        email: \"Correo Electrónico\",
+        phone: \"Teléfono\",
+        city: \"Ciudad\",
+        state: \"Estado / País\",
+        experience: \"Años de Experiencia\",
+        certs: \"Certificaciones (ASE, EGSA, otras)\",
+        vehicle_types: \"Tipos de Vehículos / Equipos que has servido\",
+        message: \"Cuéntanos sobre tu experiencia y por qué quieres unirte a Autech\",
+        mvr_ack: \"Confirmo que tengo un historial limpio de MVR de los últimos 5 años.\",
+        sida_ack: \"Soy elegible para acreditación federal de seguridad (SIDA / CBP).\",
+        compliance_ack: \"Reconozco que la verificación de antecedentes y el cumplimiento digital estricto son obligatorios para el empleo en Autech LLC.\",
+        submit: \"Enviar Aplicación\",
+        success: \"✓ Aplicación recibida — revisaremos tu perfil y te contactaremos.\",
+      },
+    },
+    lang: { es: \"ES\", en: \"EN\" },
+    whatsapp: \"Chatea por WhatsApp\",
+  },
+
+  en: {
+    nav: {
+      home: \"Home\",
+      about: \"About\",
+      services: \"Services\",
+      industries: \"Industries\",
+      contact: \"Contact\",
+      cta: \"Request Service\",
+    },
+    hero: {
+      tag: \"Commercial Fleet Specialists · Nationwide Coverage\",
+      title_a: \"Your fleet\",
+      title_b: \"never stops.\",
+      sub: \"Autech is a mobile fleet service network engineered to meet commercial operators where they are. From tractor-trailers and straight trucks to vocational vehicles — our certified technicians respond fast, work efficiently, and document everything your fleet management team needs.\",
+      cta_a: \"Request Service\",
+      cta_b: \"Who We Are\",
+      stats: [
+        { k: \"24/7\", v: \"Dispatch available\" },
+        { k: \"50+\", v: \"States covered\" },
+        { k: \"0mi\", v: \"Downtime goal\" },
+      ],
+    },
+    strip: [
+      \"Preventive Maintenance\", \"Roadside Repair\", \"Engine Diagnostics\",
+      \"Brake Service\", \"DOT Inspections\", \"Electrical Systems\",
+      \"Transmission Service\", \"Fluid Exchange\", \"Tire & Wheel\",
+      \"Fleet Contracts\", \"NASTF Programming\", \"Industrial Generators\",
+    ],
+    about: {
+      label: \"About Autech\",
+      title_a: \"Built for the\",
+      title_b: \"road ahead.\",
+      body: \"Autech is not a repair shop — we are a mobile fleet service network engineered to meet commercial operators where they are. As registered NASTF professionals, we integrate mechanical repair with authorized electronic diagnostics so your equipment is fully restored on-site without unnecessary downtime.\",
+      pillars: [
+        { t: \"Mobile First\", d: \"We come to your location — depot, job site or roadside.\" },
+        { t: \"Certified Techs\", d: \"ASE-certified professionals with heavy-duty experience.\" },
+        { t: \"Nationwide Net\", d: \"Expanding technician coverage across all 50 states.\" },
+        { t: \"Fleet Accounts\", d: \"Contracts, reporting, and priority dispatch for fleets.\" },
+      ],
+    },
+    why: {
+      label: \"Why operators choose us\",
+      title: \"Serious operators choose Autech.\",
+      items: [
+        \"Faster turnaround than traditional shop visits — no towing, no waiting lines.\",
+        \"Digital service records delivered directly to your fleet manager after every job.\",
+        \"Transparent flat-rate pricing. No hidden fees, no surprises on your invoice.\",
+        \"24/7 Dispatch Line — because breakdowns don't follow business hours.\",
+        \"Strict cost audits on parts and labor to protect your budget.\",
+      ],
+      badge: \"100% Mobile Service\",
+    },
+    services: {
+      label: \"Capabilities\",
+      title_a: \"Scalable capacity\",
+      title_b: \"for every challenge.\",
+      items: [
+        {
+          t: \"Heavy-Duty Commercial Vehicles\",
+          d: \"Mechanical repair and preventive maintenance for tractor-trailers, straight trucks and vocational vehicles.\",
+          feats: [\"Diesel engine diagnostics\", \"Brake & suspension service\", \"CAN bus & ECU systems\"],
+        },
+        {
+          t: \"Industrial Generators\",
+          d: \"Scheduled maintenance and repair for high-capacity systems in critical facilities.\",
+          feats: [\"Scheduled preventive maintenance\", \"Automatic transfer repair\", \"Load testing\"],
+        },
+        {
+          t: \"NASTF Diagnostics & Programming\",
+          d: \"As registered NASTF professionals, we program and initialize security and engine modules.\",
+          feats: [\"ECU initialization\", \"Authorized VSP programming\", \"Vehicle security\"],
+        },
+        {
+          t: \"Fleet Contracts\",
+          d: \"Tailored programs with digital reporting, priority dispatch and cost auditing.\",
+          feats: [\"Real-time reporting\", \"Cost auditing\", \"Dedicated SLA\"],
+        },
+      ],
+    },
+    industries: {
+      label: \"Strategic sectors\",
+      title_a: \"Solutions for\",
+      title_b: \"critical industries.\",
+      items: [
+        { t: \"Airports\", d: \"Technical support for security and cargo vehicles in high-security environments.\" },
+        { t: \"Logistics & Freight\", d: \"Continental transport fleets that depend on strict response times.\" },
+        { t: \"Maritime & Ports\", d: \"Vocational equipment and generators in 24/7 port operations.\" },
+        { t: \"Federal & Commercial\", d: \"Coordination with federal agencies and global commercial fleets.\" },
+      ],
+    },
+    cta_banner: {
+      title_a: \"Ready to start\",
+      title_b: \"your next dispatch?\",
+      btn: \"Request Service\",
+    },
+    contact: {
+      label: \"Get in touch\",
+      title_a: \"Let's keep your\",
+      title_b: \"fleet rolling.\",
+      body: \"Reach out for a service request, a fleet contract quote, or to learn about our network. Our team responds within one business hour during dispatch hours.\",
+      info: [
+        { k: \"Dispatch Line\", v: \"+1 (787) 000-0000\" },
+        { k: \"Email\", v: \"service@autechsys.com\" },
+        { k: \"Hours\", v: \"24 / 7 — 365 Days\" },
+        { k: \"Administration\", v: \"Aguada, Puerto Rico\" },
+      ],
+      form: {
+        first: \"First Name\",
+        last: \"Last Name\",
+        company: \"Company / Fleet\",
+        phone: \"Phone\",
+        email: \"Email\",
+        type: \"Inquiry Type\",
+        type_options: [\"Select one...\", \"Service Request\", \"Fleet Contract Quote\", \"Join as Technician\", \"General Question\"],
+        message: \"Describe your vehicle, location, issue or how we can help...\",
+        submit: \"Send Message\",
+        success: \"✓ Message sent — we'll be in touch shortly.\",
+      },
+    },
+    footer: {
+      tagline: \"Elite Mobile Mechanics Network\",
+      links: \"Links\",
+      links_items: [
+        { k: \"Home\", h: \"#home\" },
+        { k: \"About\", h: \"#about\" },
+        { k: \"Services\", h: \"#services\" },
+        { k: \"Industries\", h: \"#industries\" },
+        { k: \"Contact\", h: \"#contact\" },
+      ],
+      network: \"Join our network\",
+      network_cta: \"Apply as Technician\",
+      contact_block: \"Contact\",
+      hours: \"24 / 7 — 365 Days\",
+      address: \"Aguada, Puerto Rico\",
+      rights: \"© 2026 AUTECH LLC. All rights reserved.\",
+    },
+    careers: {
+      label: \"Join our network\",
+      title_a: \"Build your career\",
+      title_b: \"on the road.\",
+      sub: \"We're looking for skilled independent mobile mechanics ready to grow with a fleet-focused operation. Whether you're an experienced diesel tech or branching into commercial work — Autech gives you the platform, dispatch and accounts.\",
+      perks_title: \"Why join\",
+      perks: [
+        \"Work orders dispatched to your area — no cold outreach.\",
+        \"You decide your coverage territory.\",
+        \"Competitive pay structure with fast payment cycles.\",
+        \"Full back-office support: billing, reporting, accounts.\",
+        \"Grow into a lead tech role as the network expands.\",
+      ],
+      reqs_title: \"Requirements to join\",
+      reqs: [
+        {
+          t: \"1. Legal & Security Clearance (Non-negotiable)\",
+          items: [
+            \"Clean criminal background — rigorous federal and state checks.\",
+            \"NASTF VSP eligibility — Vehicle Security Professional.\",
+            \"Flawless driving record and valid license.\",
+          ],
+        },
+        {
+          t: \"2. Technical & Electromechanical Expertise\",
+          items: [
+            \"Minimum 3–5 years in heavy fleet repair or industrial generator maintenance.\",
+            \"Advanced diagnostics on electromechanical failures, CAN bus and ECU.\",
+            \"ASE Medium-Heavy Truck and/or EGSA certification preferred.\",
+          ],
+        },
+        {
+          t: \"3. Digital Literacy\",
+          items: [
+            \"FSM (Field Service Management) software via tablet/smartphone.\",
+            \"Strict digital protocol adherence and mandatory 2FA.\",
+          ],
+        },
+        {
+          t: \"4. Operational Mindset\",
+          items: [
+            \"100% mobile operation — no fixed shop.\",
+            \"Precise logistics for tools and inventory in dispatch vehicle.\",
+          ],
+        },
+      ],
+      form_title: \"Technician Application\",
+      form: {
+        first: \"First Name\",
+        last: \"Last Name\",
+        email: \"Email\",
+        phone: \"Phone\",
+        city: \"City\",
+        state: \"State / Country\",
+        experience: \"Years of Experience\",
+        certs: \"Certifications (ASE, EGSA, others)\",
+        vehicle_types: \"Vehicle / Equipment types you have serviced\",
+        message: \"Tell us about your experience and why you want to join Autech\",
+        mvr_ack: \"I confirm I have a clean 5-year MVR.\",
+        sida_ack: \"I am eligible for federal security badging (SIDA / CBP).\",
+        compliance_ack: \"I acknowledge that a clean background check and strict digital security compliance are mandatory for employment at Autech LLC.\",
+        submit: \"Submit Application\",
+        success: \"✓ Application received — we'll review your profile and reach out.\",
+      },
+    },
+    lang: { es: \"ES\", en: \"EN\" },
+    whatsapp: \"Chat on WhatsApp\",
+  },
+};
+"
+
+languagecontext jsx
+
+"import React, { createContext, useContext, useEffect, useState } from \"react\";
+import { translations } from \"./translations\";
+
+const LanguageContext = createContext(null);
+
+export const LanguageProvider = ({ children }) => {
+  const [lang, setLang] = useState(() => {
+    if (typeof window !== \"undefined\") {
+      return localStorage.getItem(\"autech_lang\") || \"es\";
+    }
+    return \"es\";
+  });
+
+  useEffect(() => {
+    localStorage.setItem(\"autech_lang\", lang);
+    if (typeof document !== \"undefined\") {
+      document.documentElement.lang = lang;
+    }
+  }, [lang]);
+
+  const t = translations[lang];
+  const toggleLang = () => setLang((p) => (p === \"es\" ? \"en\" : \"es\"));
+
+  return (
+    <LanguageContext.Provider value={{ lang, t, setLang, toggleLang }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLang = () => {
+  const ctx = useContext(LanguageContext);
+  if (!ctx) throw new Error(\"useLang must be used within LanguageProvider\");
+  return ctx;
+};
+"
+
+logo.jsx
+
+"import React from \"react\";
+
+// Inline SVG logo — recolored to match Autech brand palette
+// Stylized \"AUTECH\" with screwdriver (in A) and steering wheel (in C)
+export const Logo = ({ variant = \"dark\", className = \"\" }) => {
+  const main = variant === \"dark\" ? \"#151515\" : \"#F6F6F6\";
+  const accent = \"#C8370B\";
+
+  return (
+    <svg
+      viewBox=\"0 0 220 56\"
+      className={className}
+      xmlns=\"http://www.w3.org/2000/svg\"
+      data-testid=\"autech-logo\"
+      aria-label=\"Autech LLC\"
+    >
+      <g fontFamily=\"Archivo, sans-serif\" fontWeight=\"900\" fontSize=\"48\" letterSpacing=\"-1\">
+        <text x=\"0\" y=\"44\" fill={main}>AU</text>
+        <text x=\"74\" y=\"44\" fill={main}>TE</text>
+        <text x=\"148\" y=\"44\" fill={main}>H</text>
+        {/* Orange C with steering wheel cutout */}
+        <text x=\"120\" y=\"44\" fill={accent}>C</text>
+      </g>
+      {/* Small accent dot — represents the screwdriver tip / spark */}
+      <circle cx=\"138\" cy=\"28\" r=\"3\" fill={accent} />
+    </svg>
+  );
+};
+
+export default Logo;
+"
+
+language switcher jsx
+
+"import React from \"react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+export const LanguageSwitcher = ({ variant = \"light\" }) => {
+  const { lang, setLang } = useLang();
+  const isDark = variant === \"dark\";
+
+  const base = \"label-pill px-2 py-1 transition-colors\";
+  const active = isDark ? \"text-white\" : \"text-[#151515]\";
+  const inactive = isDark ? \"text-white/40 hover:text-white/70\" : \"text-[#151515]/40 hover:text-[#151515]/70\";
+
+  return (
+    <div
+      data-testid=\"language-switcher\"
+      className={`inline-flex items-center gap-1 rounded-full border ${isDark ? \"border-white/15\" : \"border-[#151515]/15\"} px-1 py-0.5`}
+    >
+      <button
+        type=\"button\"
+        data-testid=\"lang-es-btn\"
+        onClick={() => setLang(\"es\")}
+        className={`${base} ${lang === \"es\" ? active : inactive}`}
+      >
+        ES
+      </button>
+      <span className={`${isDark ? \"text-white/20\" : \"text-[#151515]/20\"} label-pill`}>/</span>
+      <button
+        type=\"button\"
+        data-testid=\"lang-en-btn\"
+        onClick={() => setLang(\"en\")}
+        className={`${base} ${lang === \"en\" ? active : inactive}`}
+      >
+        EN
+      </button>
+    </div>
+  );
+};
+
+export default LanguageSwitcher;
+"
+
+navbar
+
+"import React, { useEffect, useState } from \"react\";
+import { Link, useLocation, useNavigate } from \"react-router-dom\";
+import { ArrowUpRight, Menu, X } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+import { Logo } from \"./Logo\";
+import { LanguageSwitcher } from \"./LanguageSwitcher\";
+
+export const Navbar = () => {
+  const { t } = useLang();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener(\"scroll\", onScroll);
+    return () => window.removeEventListener(\"scroll\", onScroll);
+  }, []);
+
+  const goSection = (hash) => {
+    setMobileOpen(false);
+    if (location.pathname !== \"/\") {
+      navigate(\"/\" + hash);
+      return;
+    }
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: \"smooth\", block: \"start\" });
+  };
+
+  const links = [
+    { k: t.nav.home, h: \"#home\" },
+    { k: t.nav.about, h: \"#about\" },
+    { k: t.nav.services, h: \"#services\" },
+    { k: t.nav.industries, h: \"#industries\" },
+    { k: t.nav.contact, h: \"#contact\" },
+  ];
+
+  return (
+    <header
+      data-testid=\"navbar\"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? \"bg-[#F6F6F6]/85 backdrop-blur-md border-b border-[#151515]/8\" : \"bg-transparent\"
+      }`}
+    >
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 py-3 flex items-center justify-between gap-6\">
+        <Link to=\"/\" data-testid=\"navbar-logo\" className=\"shrink-0 flex items-center\">
+          <Logo variant=\"dark\" className=\"h-7 w-auto\" />
+        </Link>
+
+        <nav className=\"hidden lg:flex items-center gap-1\">
+          {links.map((l) => (
+            <button
+              key={l.h}
+              data-testid={`nav-link-${l.h.slice(1)}`}
+              onClick={() => goSection(l.h)}
+              className=\"px-4 py-2 text-sm font-medium text-[#151515] hover:text-[#C8370B] transition-colors\"
+            >
+              {l.k}
+            </button>
+          ))}
+        </nav>
+
+        <div className=\"flex items-center gap-3\">
+          <LanguageSwitcher />
+          <button
+            data-testid=\"navbar-cta-btn\"
+            onClick={() => goSection(\"#contact\")}
+            className=\"btn-primary hidden md:inline-flex\"
+          >
+            <span>{t.nav.cta}</span>
+            <span className=\"arrow-pill\">
+              <ArrowUpRight size={16} color=\"#fff\" />
+            </span>
+          </button>
+          <button
+            data-testid=\"mobile-menu-toggle\"
+            onClick={() => setMobileOpen((v) => !v)}
+            className=\"lg:hidden p-2 text-[#151515]\"
+            aria-label=\"Toggle menu\"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div data-testid=\"mobile-menu\" className=\"lg:hidden bg-[#F6F6F6] border-t border-[#151515]/8\">
+          <div className=\"px-5 py-4 flex flex-col gap-1\">
+            {links.map((l) => (
+              <button
+                key={l.h}
+                onClick={() => goSection(l.h)}
+                className=\"text-left py-3 text-base font-semibold text-[#151515] border-b border-[#151515]/8\"
+              >
+                {l.k}
+              </button>
+            ))}
+            <button
+              onClick={() => goSection(\"#contact\")}
+              className=\"btn-primary mt-4 self-start\"
+            >
+              <span>{t.nav.cta}</span>
+              <span className=\"arrow-pill\">
+                <ArrowUpRight size={16} color=\"#fff\" />
+              </span>
+            </button>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Navbar;
+"
+
+hero
+
+"import React from \"react\";
+import { ArrowUpRight } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+const HERO_IMG = \"https://images.pexels.com/photos/7018493/pexels-photo-7018493.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600\";
+
+export const Hero = () => {
+  const { t } = useLang();
+
+  const scrollTo = (id) => {
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: \"smooth\", block: \"start\" });
+  };
+
+  return (
+    <section id=\"home\" data-testid=\"hero-section\" className=\"relative pt-28 md:pt-32 pb-0 dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+        {/* Top label row */}
+        <div className=\"flex items-center justify-between mb-8 reveal\">
+          <span className=\"label-pill text-[#151515]/60 flex items-center gap-2\">
+            <span className=\"text-[#C8370B]\">+</span> {t.hero.tag}
+          </span>
+          <span className=\"hidden md:inline label-pill text-[#151515]/60\">
+            EST. 2020 · PR / FL / TX
+          </span>
+        </div>
+
+        {/* Headline */}
+        <h1 className=\"font-display text-[14vw] md:text-[10vw] lg:text-[8.4vw] leading-[0.92] text-[#151515] reveal reveal-delay-1\">
+          {t.hero.title_a}
+          <br />
+          <em className=\"not-italic text-[#C8370B]\">{t.hero.title_b}</em>
+        </h1>
+
+        <div className=\"grid lg:grid-cols-12 gap-8 mt-10\">
+          <div className=\"lg:col-span-7 reveal reveal-delay-2\">
+            <p className=\"text-base md:text-lg text-[#151515]/70 max-w-2xl leading-relaxed\">
+              {t.hero.sub}
+            </p>
+            <div className=\"flex flex-wrap items-center gap-4 mt-8\">
+              <button
+                data-testid=\"hero-cta-primary\"
+                onClick={() => scrollTo(\"#contact\")}
+                className=\"btn-primary\"
+              >
+                <span>{t.hero.cta_a}</span>
+                <span className=\"arrow-pill\">
+                  <ArrowUpRight size={16} color=\"#fff\" />
+                </span>
+              </button>
+              <button
+                data-testid=\"hero-cta-secondary\"
+                onClick={() => scrollTo(\"#about\")}
+                className=\"btn-ghost\"
+              >
+                <span>{t.hero.cta_b}</span>
+                <ArrowUpRight size={16} />
+              </button>
+            </div>
+          </div>
+
+          {/* Stats column */}
+          <div className=\"lg:col-span-5 reveal reveal-delay-3\">
+            <div className=\"grid grid-cols-3 gap-2 border-t border-[#151515]/10 pt-6\">
+              {t.hero.stats.map((s, i) => (
+                <div key={i} className=\"px-2\">
+                  <div className=\"font-display text-3xl md:text-4xl text-[#151515]\">
+                    {s.k}
+                  </div>
+                  <div className=\"label-pill text-[#151515]/50 mt-2\">{s.v}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Hero image */}
+        <div className=\"mt-12 md:mt-16 relative noise-bg rounded-sm overflow-hidden reveal reveal-delay-3\">
+          <div className=\"aspect-[16/8] md:aspect-[16/7] relative\">
+            <img
+              src={HERO_IMG}
+              alt=\"Mecánico móvil Autech reparando un camión comercial en sitio\"
+              className=\"absolute inset-0 w-full h-full object-cover\"
+            />
+            <div className=\"absolute inset-0 bg-gradient-to-t from-[#151515]/70 via-[#151515]/20 to-transparent\" />
+            <div className=\"absolute bottom-6 left-6 right-6 flex items-end justify-between\">
+              <div className=\"text-white\">
+                <div className=\"label-pill text-white/70\">{t.hero.tag}</div>
+                <div className=\"font-display text-2xl md:text-3xl mt-1\">
+                  AUTECH <span className=\"text-[#F66234]\">/</span> ON SITE
+                </div>
+              </div>
+              <div className=\"hidden md:flex items-center gap-2 text-white/70 label-pill\">
+                <span className=\"h-2 w-2 rounded-full bg-[#F66234] animate-pulse\" /> Live Dispatch
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
+"
+
+services strip
+
+"import React from \"react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+export const ServicesStrip = () => {
+  const { t } = useLang();
+  const items = [...t.strip, ...t.strip];
+
+  return (
+    <section data-testid=\"services-strip\" className=\"bg-[#151515] py-6 md:py-7 border-y border-white/5 overflow-hidden\">
+      <div className=\"marquee-track\">
+        {items.map((s, i) => (
+          <div key={i} className=\"flex items-center gap-8 px-6 shrink-0\">
+            <span className=\"font-display text-2xl md:text-3xl text-white/95 whitespace-nowrap\">
+              {s}
+            </span>
+            <span className=\"text-[#F66234] text-2xl\">✦</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default ServicesStrip;
+"
+
+about
+
+"import React from \"react\";
+import { Wrench, BadgeCheck, MapPin, FileText } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+const ICONS = [Wrench, BadgeCheck, MapPin, FileText];
+
+export const About = () => {
+  const { t } = useLang();
+
+  return (
+    <section id=\"about\" data-testid=\"about-section\" className=\"relative py-24 md:py-32 dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+        <div className=\"flex items-center gap-2 mb-10\">
+          <span className=\"text-[#C8370B]\">+</span>
+          <span className=\"label-pill text-[#151515]/60\">{t.about.label}</span>
+        </div>
+
+        <div className=\"grid lg:grid-cols-12 gap-10\">
+          <div className=\"lg:col-span-7\">
+            <h2 className=\"font-display text-[10vw] md:text-[6.5vw] lg:text-[5vw] leading-[0.95] text-[#151515]\">
+              {t.about.title_a}<br />
+              <span className=\"text-[#C8370B]\">{t.about.title_b}</span>
+            </h2>
+            <p className=\"text-base md:text-lg text-[#151515]/70 max-w-2xl mt-8 leading-relaxed\">
+              {t.about.body}
+            </p>
+          </div>
+
+          <div className=\"lg:col-span-5\">
+            <div className=\"grid grid-cols-2 gap-3\">
+              {t.about.pillars.map((p, i) => {
+                const Icon = ICONS[i];
+                return (
+                  <div
+                    key={i}
+                    data-testid={`about-pillar-${i}`}
+                    className=\"tilt-card group bg-white border border-[#151515]/8 p-5 rounded-sm\"
+                  >
+                    <div className=\"w-10 h-10 rounded-full bg-[#151515] flex items-center justify-center mb-4 group-hover:bg-[#C8370B] transition-colors\">
+                      <Icon size={18} color=\"#fff\" />
+                    </div>
+                    <div className=\"font-display text-lg text-[#151515]\">{p.t}</div>
+                    <div className=\"text-sm text-[#151515]/60 mt-2 leading-relaxed\">{p.d}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
+"
+
+services
+
+"import React, { useState } from \"react\";
+import { Plus, Minus, Check } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+const IMAGES = [
+  \"https://images.unsplash.com/photo-1770715897376-22215c26e2a7?crop=entropy&cs=srgb&fm=jpg&w=900&q=80\",
+  \"https://images.unsplash.com/photo-1770705950498-d373e33ecb1a?crop=entropy&cs=srgb&fm=jpg&w=900&q=80\",
+  \"https://images.pexels.com/photos/7564862/pexels-photo-7564862.jpeg?auto=compress&cs=tinysrgb&w=900\",
+  \"https://images.unsplash.com/photo-1523559094051-53bac879eb80?crop=entropy&cs=srgb&fm=jpg&w=900&q=80\",
+];
+
+export const Services = () => {
+  const { t } = useLang();
+  const [open, setOpen] = useState(0);
+
+  return (
+    <section id=\"services\" data-testid=\"services-section\" className=\"relative py-24 md:py-32 bg-white dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+        <div className=\"flex items-center justify-between flex-wrap gap-4 mb-10\">
+          <div>
+            <div className=\"flex items-center gap-2 mb-4\">
+              <span className=\"text-[#C8370B]\">+</span>
+              <span className=\"label-pill text-[#151515]/60\">{t.services.label}</span>
+            </div>
+            <h2 className=\"font-display text-[9vw] md:text-[6vw] lg:text-[4.6vw] leading-[0.95] text-[#151515]\">
+              {t.services.title_a} <span className=\"text-[#C8370B]\">{t.services.title_b.split(' ').slice(0,1)}</span>{' '}{t.services.title_b.split(' ').slice(1).join(' ')}
+            </h2>
+          </div>
+        </div>
+
+        <div className=\"border-t border-[#151515]/10\">
+          {t.services.items.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <div
+                key={i}
+                data-testid={`service-row-${i}`}
+                className=\"border-b border-[#151515]/10 transition-colors\"
+              >
+                <button
+                  type=\"button\"
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  className=\"w-full text-left grid grid-cols-12 gap-4 items-center py-6 group\"
+                >
+                  <div className=\"col-span-2 md:col-span-1\">
+                    <span className=\"font-mono text-sm text-[#151515]/40\">0{i + 1}</span>
+                  </div>
+                  <div className=\"col-span-7 md:col-span-5\">
+                    <span className=\"font-display text-xl md:text-2xl text-[#151515] group-hover:text-[#C8370B] transition-colors\">
+                      {item.t}
+                    </span>
+                  </div>
+                  <div className=\"hidden md:block md:col-span-5 text-sm text-[#151515]/60 max-w-md\">
+                    {item.d}
+                  </div>
+                  <div className=\"col-span-3 md:col-span-1 flex justify-end\">
+                    <span className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${isOpen ? \"bg-[#C8370B]\" : \"bg-[#151515]\"}`}>
+                      {isOpen ? <Minus size={16} color=\"#fff\" /> : <Plus size={16} color=\"#fff\" />}
+                    </span>
+                  </div>
+                </button>
+
+                {isOpen && (
+                  <div className=\"pb-8 grid lg:grid-cols-12 gap-6\">
+                    <div className=\"lg:col-start-2 lg:col-span-5 rounded-sm overflow-hidden\">
+                      <img
+                        src={IMAGES[i]}
+                        alt={item.t}
+                        className=\"w-full h-56 md:h-64 object-cover\"
+                      />
+                    </div>
+                    <div className=\"lg:col-span-5\">
+                      <p className=\"text-[#151515]/70 leading-relaxed md:hidden mb-4\">{item.d}</p>
+                      <div className=\"label-pill text-[#151515]/50 mb-3\">Features</div>
+                      <ul className=\"space-y-2\">
+                        {item.feats.map((f, j) => (
+                          <li key={j} className=\"flex items-start gap-3 text-[#151515]\">
+                            <span className=\"mt-1 w-5 h-5 rounded-full bg-[#C8370B]/12 flex items-center justify-center shrink-0\">
+                              <Check size={12} color=\"#C8370B\" />
+                            </span>
+                            <span className=\"text-sm md:text-base\">{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;
+"
+
+industries
+
+"import React, { useState } from \"react\";
+import { useLang } from \"../i18n/LanguageContext\";
+import { Plane, Truck, Anchor, Shield } from \"lucide-react\";
+
+const ICONS = [Plane, Truck, Anchor, Shield];
+const IMG = \"https://images.unsplash.com/photo-1569020569118-e5cb69d8251b?crop=entropy&cs=srgb&fm=jpg&w=1600&q=80\";
+
+export const Industries = () => {
+  const { t } = useLang();
+  const [active, setActive] = useState(0);
+
+  return (
+    <section id=\"industries\" data-testid=\"industries-section\" className=\"py-24 md:py-32 bg-[#F6F6F6] dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+        <div className=\"text-center mb-12\">
+          <div className=\"flex items-center justify-center gap-2 mb-4\">
+            <span className=\"text-[#C8370B]\">+</span>
+            <span className=\"label-pill text-[#151515]/60\">{t.industries.label}</span>
+          </div>
+          <h2 className=\"font-display text-[9vw] md:text-[6vw] lg:text-[4.6vw] leading-[0.95] text-[#151515]\">
+            {t.industries.title_a} <span className=\"text-[#C8370B]\">{t.industries.title_b}</span>
+          </h2>
+        </div>
+
+        <div className=\"grid lg:grid-cols-12 gap-6 items-stretch\">
+          {/* Left: list */}
+          <div className=\"lg:col-span-4 flex flex-col gap-2\">
+            {t.industries.items.map((it, i) => {
+              const Icon = ICONS[i];
+              const isActive = active === i;
+              return (
+                <button
+                  key={i}
+                  data-testid={`industry-${i}`}
+                  onMouseEnter={() => setActive(i)}
+                  onClick={() => setActive(i)}
+                  className={`text-left px-5 py-5 rounded-sm border transition-all ${
+                    isActive
+                      ? \"bg-[#151515] border-[#151515] text-white\"
+                      : \"bg-white border-[#151515]/8 text-[#151515] hover:border-[#C8370B]\"
+                  }`}
+                >
+                  <div className=\"flex items-center gap-3\">
+                    <span className={`w-8 h-8 rounded-full flex items-center justify-center ${isActive ? \"bg-[#C8370B]\" : \"bg-[#F6F6F6]\"}`}>
+                      <Icon size={16} color={isActive ? \"#fff\" : \"#151515\"} />
+                    </span>
+                    <span className=\"font-display text-lg\">{it.t}</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: panel */}
+          <div className=\"lg:col-span-8 relative noise-bg rounded-sm overflow-hidden min-h-[420px]\">
+            <img src={IMG} alt={t.industries.items[active].t} className=\"absolute inset-0 w-full h-full object-cover\" />
+            <div className=\"absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/60 to-transparent\" />
+            <div className=\"absolute bottom-0 left-0 right-0 p-7 md:p-10 text-white\">
+              <div className=\"label-pill text-white/60 mb-3\">0{active + 1} / 0{t.industries.items.length}</div>
+              <div className=\"font-display text-3xl md:text-4xl\">{t.industries.items[active].t}</div>
+              <div className=\"text-white/75 mt-3 max-w-xl text-sm md:text-base leading-relaxed\">{t.industries.items[active].d}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Industries;
+"
+
+why us
+
+"import React from \"react\";
+import { useLang } from \"../i18n/LanguageContext\";
+import { Check } from \"lucide-react\";
+
+export const WhyUs = () => {
+  const { t } = useLang();
+
+  return (
+    <section data-testid=\"why-us-section\" className=\"py-24 md:py-32 bg-[#151515] relative overflow-hidden dash-guides-dark\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-12 gap-10\">
+        <div className=\"lg:col-span-6\">
+          <div className=\"flex items-center gap-2 mb-6\">
+            <span className=\"text-[#F66234]\">+</span>
+            <span className=\"label-pill text-white/60\">{t.why.label}</span>
+          </div>
+          <h2 className=\"font-display text-[9vw] md:text-[5.5vw] lg:text-[4.4vw] leading-[0.95] text-white\">
+            {t.why.title.split(' ').slice(0, -1).join(' ')}{' '}
+            <span className=\"text-[#F66234]\">{t.why.title.split(' ').slice(-1)}</span>
+          </h2>
+        </div>
+
+        <div className=\"lg:col-span-6 relative\">
+          <div className=\"absolute -top-3 -right-3 bg-[#C8370B] text-white label-pill px-3 py-2 rounded-full\">
+            {t.why.badge}
+          </div>
+          <ul className=\"space-y-3 bg-[#191919] border border-white/8 p-7 md:p-9 rounded-sm\">
+            {t.why.items.map((it, i) => (
+              <li key={i} data-testid={`why-item-${i}`} className=\"flex items-start gap-4 py-3 border-b last:border-b-0 border-white/8\">
+                <span className=\"font-mono text-xs text-[#F66234] pt-1\">0{i + 1}</span>
+                <span className=\"text-white/85 text-sm md:text-base leading-relaxed flex-1\">{it}</span>
+                <Check size={18} color=\"#F66234\" className=\"mt-1 shrink-0\" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default WhyUs;
+"
+
+cts banner
+
+"import React from \"react\";
+import { ArrowUpRight } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+export const CTABanner = () => {
+  const { t } = useLang();
+  const scrollTo = (id) => {
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: \"smooth\", block: \"start\" });
+  };
+
+  return (
+    <section data-testid=\"cta-banner\" className=\"py-12 md:py-16 bg-[#F6F6F6]\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+        <div
+          className=\"relative overflow-hidden rounded-sm border border-[#151515]/10 bg-[#151515] noise-bg p-7 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6\"
+          style={{
+            backgroundImage:
+              \"repeating-linear-gradient(135deg, rgba(200,55,11,0.12) 0 14px, transparent 14px 28px), linear-gradient(180deg, #151515, #191919)\",
+          }}
+        >
+          <h3 className=\"font-display text-3xl md:text-5xl text-white leading-[0.95]\">
+            {t.cta_banner.title_a}<br />
+            <span className=\"text-[#F66234]\">{t.cta_banner.title_b}</span>
+          </h3>
+          <button
+            data-testid=\"cta-banner-btn\"
+            onClick={() => scrollTo(\"#contact\")}
+            className=\"btn-primary\"
+            style={{ background: \"#C8370B\", borderColor: \"#C8370B\" }}
+          >
+            <span>{t.cta_banner.btn}</span>
+            <span className=\"arrow-pill\" style={{ background: \"#151515\" }}>
+              <ArrowUpRight size={16} color=\"#fff\" />
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CTABanner;
+"
+
+contact
+
+"import React, { useState } from \"react\";
+import { ArrowUpRight } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+export const Contact = () => {
+  const { t } = useLang();
+  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({
+    first: \"\", last: \"\", company: \"\", phone: \"\", email: \"\", type: \"\", message: \"\",
+  });
+
+  const onChange = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }));
+
+  const submit = (e) => {
+    e.preventDefault();
+    // UI-only — no backend submission (as specified by client)
+    setSent(true);
+    setTimeout(() => setSent(false), 5000);
+    setForm({ first: \"\", last: \"\", company: \"\", phone: \"\", email: \"\", type: \"\", message: \"\" });
+  };
+
+  return (
+    <section id=\"contact\" data-testid=\"contact-section\" className=\"py-24 md:py-32 bg-white dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+        <div className=\"grid lg:grid-cols-12 gap-12\">
+          {/* Left */}
+          <div className=\"lg:col-span-5\">
+            <div className=\"flex items-center gap-2 mb-6\">
+              <span className=\"text-[#C8370B]\">+</span>
+              <span className=\"label-pill text-[#151515]/60\">{t.contact.label}</span>
+            </div>
+            <h2 className=\"font-display text-[9vw] md:text-[5.5vw] lg:text-[4.4vw] leading-[0.95] text-[#151515]\">
+              {t.contact.title_a}<br />
+              <span className=\"text-[#C8370B]\">{t.contact.title_b}</span>
+            </h2>
+            <p className=\"text-[#151515]/70 mt-6 max-w-md leading-relaxed\">{t.contact.body}</p>
+
+            <div className=\"mt-10 space-y-5\">
+              {t.contact.info.map((i, idx) => (
+                <div key={idx} data-testid={`contact-info-${idx}`} className=\"flex items-start justify-between border-b border-[#151515]/10 pb-4\">
+                  <span className=\"label-pill text-[#151515]/50\">{i.k}</span>
+                  <span className=\"font-display text-base md:text-lg text-[#151515] text-right\">{i.v}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right form */}
+          <div className=\"lg:col-span-7\">
+            <form data-testid=\"contact-form\" onSubmit={submit} className=\"bg-[#F6F6F6] border border-[#151515]/8 p-7 md:p-10 rounded-sm\">
+              <div className=\"grid md:grid-cols-2 gap-5\">
+                <input data-testid=\"contact-first\" required value={form.first} onChange={onChange(\"first\")} className=\"autech-input\" placeholder={t.contact.form.first} />
+                <input data-testid=\"contact-last\" required value={form.last} onChange={onChange(\"last\")} className=\"autech-input\" placeholder={t.contact.form.last} />
+                <input data-testid=\"contact-company\" value={form.company} onChange={onChange(\"company\")} className=\"autech-input\" placeholder={t.contact.form.company} />
+                <input data-testid=\"contact-phone\" value={form.phone} onChange={onChange(\"phone\")} className=\"autech-input\" placeholder={t.contact.form.phone} />
+                <input data-testid=\"contact-email\" required type=\"email\" value={form.email} onChange={onChange(\"email\")} className=\"autech-input md:col-span-2\" placeholder={t.contact.form.email} />
+                <select data-testid=\"contact-type\" value={form.type} onChange={onChange(\"type\")} className=\"autech-input md:col-span-2\">
+                  {t.contact.form.type_options.map((o, i) => (
+                    <option key={i} value={i === 0 ? \"\" : o} disabled={i === 0}>{o}</option>
+                  ))}
+                </select>
+                <textarea data-testid=\"contact-message\" value={form.message} onChange={onChange(\"message\")} rows={4} className=\"autech-input md:col-span-2 resize-none\" placeholder={t.contact.form.message} />
+              </div>
+
+              <div className=\"flex items-center justify-between flex-wrap gap-4 mt-8\">
+                {sent ? (
+                  <div data-testid=\"contact-success\" className=\"text-[#C8370B] font-semibold flex items-center gap-2\">
+                    {t.contact.form.success}
+                  </div>
+                ) : (
+                  <span className=\"label-pill text-[#151515]/40\">* Required fields</span>
+                )}
+                <button data-testid=\"contact-submit\" type=\"submit\" className=\"btn-primary\">
+                  <span>{t.contact.form.submit}</span>
+                  <span className=\"arrow-pill\">
+                    <ArrowUpRight size={16} color=\"#fff\" />
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
+"
+
+footer
+
+"import React from \"react\";
+import { Link } from \"react-router-dom\";
+import { ArrowUpRight, Linkedin, Instagram, Facebook } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+import { Logo } from \"./Logo\";
+import { LanguageSwitcher } from \"./LanguageSwitcher\";
+
+export const Footer = () => {
+  const { t } = useLang();
+
+  const goSection = (hash) => {
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: \"smooth\", block: \"start\" });
+    else window.location.href = \"/\" + hash;
+  };
+
+  return (
+    <footer data-testid=\"footer\" className=\"bg-[#151515] text-white relative overflow-hidden\">
+      <div className=\"absolute inset-0 dash-guides-dark pointer-events-none\" />
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 py-16 md:py-20 relative\">
+        {/* Top huge wordmark */}
+        <div className=\"border-b border-white/10 pb-10 mb-10\">
+          <div className=\"font-display text-[18vw] md:text-[14vw] leading-[0.85] text-white/95 select-none\">
+            AUTE<span className=\"text-[#C8370B]\">C</span>H
+          </div>
+          <div className=\"flex items-center justify-between flex-wrap gap-4 mt-4\">
+            <span className=\"label-pill text-white/50\">{t.footer.tagline}</span>
+            <LanguageSwitcher variant=\"dark\" />
+          </div>
+        </div>
+
+        {/* Columns */}
+        <div className=\"grid md:grid-cols-2 lg:grid-cols-4 gap-10\">
+          <div>
+            <Logo variant=\"light\" className=\"h-7 w-auto mb-5\" />
+            <p className=\"text-white/60 text-sm leading-relaxed max-w-xs\">
+              {t.footer.tagline}.
+            </p>
+            <div className=\"flex items-center gap-3 mt-5\">
+              {[Linkedin, Instagram, Facebook].map((Icon, i) => (
+                <a
+                  key={i}
+                  href=\"#\"
+                  data-testid={`footer-social-${i}`}
+                  className=\"w-9 h-9 rounded-full border border-white/15 flex items-center justify-center hover:bg-[#C8370B] hover:border-[#C8370B] transition-colors\"
+                  aria-label=\"Social link\"
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className=\"label-pill text-white/40 mb-4\">{t.footer.links}</div>
+            <ul className=\"space-y-3\">
+              {t.footer.links_items.map((l) => (
+                <li key={l.h}>
+                  <button
+                    onClick={() => goSection(l.h)}
+                    data-testid={`footer-link-${l.h.slice(1)}`}
+                    className=\"text-white/85 hover:text-[#F66234] transition-colors\"
+                  >
+                    {l.k}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <div className=\"label-pill text-white/40 mb-4\">{t.footer.contact_block}</div>
+            <ul className=\"space-y-3 text-sm\">
+              <li className=\"text-white/85\">service@autechsys.com</li>
+              <li className=\"text-white/85\">+1 (787) 000-0000</li>
+              <li className=\"text-white/60\">{t.footer.hours}</li>
+              <li className=\"text-white/60\">{t.footer.address}</li>
+            </ul>
+          </div>
+
+          <div>
+            <div className=\"label-pill text-white/40 mb-4\">{t.footer.network}</div>
+            <p className=\"text-white/70 text-sm leading-relaxed mb-5\">
+              {t.footer.network === \"Únete a la red\"
+                ? \"¿Eres mecánico móvil? Construye tu carrera con la red Autech.\"
+                : \"Mobile mechanic? Build your career with the Autech network.\"}
+            </p>
+            <Link
+              to=\"/careers\"
+              data-testid=\"footer-careers-btn\"
+              className=\"btn-primary\"
+              style={{ background: \"#C8370B\", borderColor: \"#C8370B\" }}
+            >
+              <span>{t.footer.network_cta}</span>
+              <span className=\"arrow-pill\" style={{ background: \"#151515\" }}>
+                <ArrowUpRight size={16} color=\"#fff\" />
+              </span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className=\"border-t border-white/10 mt-12 pt-6 flex items-center justify-between flex-wrap gap-4\">
+          <span className=\"label-pill text-white/40\">{t.footer.rights}</span>
+          <span className=\"label-pill text-white/40\">AUTECH LLC · PR · USA</span>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+"
+
+whatsapp float
+
+"import React from \"react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+// Placeholder number — user will replace later
+const WA_NUMBER = \"17870000000\";
+
+export const WhatsAppFloat = () => {
+  const { t } = useLang();
+  const msg = encodeURIComponent(
+    \"Hola Autech, me interesa solicitar información sobre sus servicios.\"
+  );
+  const href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+
+  return (
+    <a
+      href={href}
+      target=\"_blank\"
+      rel=\"noopener noreferrer\"
+      data-testid=\"whatsapp-float\"
+      aria-label={t.whatsapp}
+      className=\"fixed bottom-5 right-5 md:bottom-7 md:right-7 z-40 group\"
+    >
+      <span className=\"relative inline-flex items-center justify-center\">
+        <span className=\"absolute inset-0 rounded-full wa-pulse\" />
+        <span className=\"relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#25D366] flex items-center justify-center shadow-xl shadow-[#25D366]/30 transition-transform group-hover:scale-105\">
+          <svg viewBox=\"0 0 32 32\" width=\"28\" height=\"28\" fill=\"#fff\" aria-hidden=\"true\">
+            <path d=\"M19.11 17.21c-.27-.14-1.61-.79-1.86-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.18-1.34-.81-.72-1.35-1.61-1.51-1.88-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16 0-.34-.02-.52-.02-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.63 1.11 2.81.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.66.21 1.25.18 1.72.11.52-.08 1.61-.66 1.84-1.29.23-.63.23-1.17.16-1.29-.07-.12-.25-.18-.52-.32zM16 3C8.82 3 3 8.82 3 16c0 2.3.6 4.46 1.66 6.34L3 29l6.84-1.79A12.94 12.94 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3z\" />
+          </svg>
+        </span>
+      </span>
+      <span className=\"hidden md:block absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-[#151515] text-white text-xs font-medium px-3 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity\">
+        {t.whatsapp}
+      </span>
+    </a>
+  );
+};
+
+export default WhatsAppFloat;
+"
+
+seo
+
+"import { useEffect } from \"react\";
+
+// Lightweight SEO updater — sets <title> and meta description on route mount.
+export const SEO = ({ title, description }) => {
+  useEffect(() => {
+    if (title) document.title = title;
+    if (description) {
+      let meta = document.querySelector('meta[name=\"description\"]');
+      if (!meta) {
+        meta = document.createElement(\"meta\");
+        meta.setAttribute(\"name\", \"description\");
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute(\"content\", description);
+    }
+  }, [title, description]);
+  return null;
+};
+
+export default SEO;
+"
+
+home page
+
+"import React, { useEffect } from \"react\";
+import { useLocation } from \"react-router-dom\";
+import { Hero } from \"../components/Hero\";
+import { ServicesStrip } from \"../components/ServicesStrip\";
+import { About } from \"../components/About\";
+import { Services } from \"../components/Services\";
+import { Industries } from \"../components/Industries\";
+import { WhyUs } from \"../components/WhyUs\";
+import { CTABanner } from \"../components/CTABanner\";
+import { Contact } from \"../components/Contact\";
+import { SEO } from \"../components/SEO\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+export const HomePage = () => {
+  const { lang } = useLang();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: \"smooth\" }), 150);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: \"instant\" });
+    }
+  }, [location]);
+
+  const title =
+    lang === \"es\"
+      ? \"Autech LLC — Soporte Técnico de Flotas Sin Fronteras\"
+      : \"Autech LLC — Commercial Fleet Mobile Mechanics\";
+  const description =
+    lang === \"es\"
+      ? \"Red móvil de mecánicos certificados para flotas comerciales y generadores industriales. Desde el Caribe hasta los EE.UU.\"
+      : \"Mobile mechanic network for commercial fleets and industrial generators. Caribbean to USA coverage.\";
+
+  return (
+    <main data-testid=\"home-page\">
+      <SEO title={title} description={description} />
+      <Hero />
+      <ServicesStrip />
+      <About />
+      <Services />
+      <Industries />
+      <WhyUs />
+      <CTABanner />
+      <Contact />
+    </main>
+  );
+};
+
+export default HomePage;
+"
+
+careers page
+
+"import React, { useEffect, useState } from \"react\";
+import { Link } from \"react-router-dom\";
+import { ArrowLeft, ArrowUpRight, Check } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+import { SEO } from \"../components/SEO\";
+
+const HERO_IMG = \"https://images.pexels.com/photos/7564862/pexels-photo-7564862.jpeg?auto=compress&cs=tinysrgb&w=1600\";
+
+export const CareersPage = () => {
+  const { t, lang } = useLang();
+  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({
+    first: \"\", last: \"\", email: \"\", phone: \"\", city: \"\", state: \"\",
+    experience: \"\", certs: \"\", vehicle_types: \"\", message: \"\",
+    mvr: false, sida: false, compliance: false,
+  });
+
+  useEffect(() => { window.scrollTo({ top: 0 }); }, []);
+
+  const onChange = (k) => (e) => {
+    const v = e.target.type === \"checkbox\" ? e.target.checked : e.target.value;
+    setForm((p) => ({ ...p, [k]: v }));
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!form.compliance) return;
+    setSent(true);
+    setTimeout(() => setSent(false), 6000);
+    setForm({
+      first: \"\", last: \"\", email: \"\", phone: \"\", city: \"\", state: \"\",
+      experience: \"\", certs: \"\", vehicle_types: \"\", message: \"\",
+      mvr: false, sida: false, compliance: false,
+    });
+  };
+
+  const title = lang === \"es\"
+    ? \"Únete a la Red Autech — Aplicación de Técnico\"
+    : \"Join the Autech Network — Technician Application\";
+  const description = lang === \"es\"
+    ? \"Aplica para unirte a la red de mecánicos móviles Autech. Requisitos, beneficios y aplicación en línea.\"
+    : \"Apply to join the Autech mobile mechanic network. Requirements, benefits and online application.\";
+
+  return (
+    <main data-testid=\"careers-page\" className=\"bg-[#F6F6F6]\">
+      <SEO title={title} description={description} />
+
+      {/* Hero */}
+      <section className=\"relative pt-28 md:pt-36 pb-16 md:pb-20 dash-guides\">
+        <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+          <Link
+            to=\"/\"
+            data-testid=\"back-to-home\"
+            className=\"inline-flex items-center gap-2 label-pill text-[#151515]/60 hover:text-[#C8370B] transition-colors mb-8\"
+          >
+            <ArrowLeft size={14} /> {lang === \"es\" ? \"Volver al inicio\" : \"Back to home\"}
+          </Link>
+          <div className=\"flex items-center gap-2 mb-6\">
+            <span className=\"text-[#C8370B]\">+</span>
+            <span className=\"label-pill text-[#151515]/60\">{t.careers.label}</span>
+          </div>
+          <h1 className=\"font-display text-[12vw] md:text-[8vw] lg:text-[6.6vw] leading-[0.92] text-[#151515]\">
+            {t.careers.title_a}<br />
+            <span className=\"text-[#C8370B]\">{t.careers.title_b}</span>
+          </h1>
+          <p className=\"text-base md:text-lg text-[#151515]/70 max-w-2xl mt-8 leading-relaxed\">
+            {t.careers.sub}
+          </p>
+        </div>
+      </section>
+
+      {/* Hero image */}
+      <section className=\"px-5 md:px-10\">
+        <div className=\"max-w-[1440px] mx-auto relative noise-bg rounded-sm overflow-hidden\">
+          <img src={HERO_IMG} alt=\"Autech mobile technician at work\" className=\"w-full h-72 md:h-[420px] object-cover\" />
+          <div className=\"absolute inset-0 bg-gradient-to-t from-[#151515]/70 to-transparent\" />
+        </div>
+      </section>
+
+      {/* Perks */}
+      <section className=\"py-20 md:py-24 dash-guides\">
+        <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-12 gap-10\">
+          <div className=\"lg:col-span-5\">
+            <div className=\"flex items-center gap-2 mb-4\">
+              <span className=\"text-[#C8370B]\">+</span>
+              <span className=\"label-pill text-[#151515]/60\">{t.careers.perks_title}</span>
+            </div>
+            <h2 className=\"font-display text-4xl md:text-5xl text-[#151515] leading-[0.95]\">
+              {lang === \"es\" ? \"Crece con la red.\" : \"Grow with the network.\"}
+            </h2>
+          </div>
+          <div className=\"lg:col-span-7\">
+            <ul className=\"space-y-3\">
+              {t.careers.perks.map((p, i) => (
+                <li key={i} className=\"flex items-start gap-4 py-4 border-b border-[#151515]/10\">
+                  <span className=\"font-mono text-xs text-[#C8370B] pt-1\">0{i + 1}</span>
+                  <span className=\"text-[#151515] flex-1\">{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Requirements */}
+      <section className=\"py-20 md:py-24 bg-white dash-guides\">
+        <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+          <div className=\"flex items-center gap-2 mb-4\">
+            <span className=\"text-[#C8370B]\">+</span>
+            <span className=\"label-pill text-[#151515]/60\">{t.careers.reqs_title}</span>
+          </div>
+          <h2 className=\"font-display text-4xl md:text-5xl text-[#151515] leading-[0.95] mb-12\">
+            {lang === \"es\"
+              ? <>Estándares <span className=\"text-[#C8370B]\">no negociables.</span></>
+              : <>Non-negotiable <span className=\"text-[#C8370B]\">standards.</span></>}
+          </h2>
+
+          <div className=\"grid md:grid-cols-2 gap-5\">
+            {t.careers.reqs.map((g, i) => (
+              <div key={i} data-testid={`careers-req-${i}`} className=\"border border-[#151515]/8 rounded-sm p-6 bg-[#F6F6F6]\">
+                <div className=\"font-display text-lg text-[#151515] mb-4\">{g.t}</div>
+                <ul className=\"space-y-2\">
+                  {g.items.map((it, j) => (
+                    <li key={j} className=\"flex items-start gap-3 text-sm text-[#151515]/80\">
+                      <Check size={14} color=\"#C8370B\" className=\"mt-1 shrink-0\" />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Application form */}
+      <section id=\"apply\" className=\"py-24 md:py-32 bg-[#151515] relative overflow-hidden dash-guides-dark\">
+        <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+          <div className=\"flex items-center gap-2 mb-4\">
+            <span className=\"text-[#F66234]\">+</span>
+            <span className=\"label-pill text-white/60\">{t.careers.form_title}</span>
+          </div>
+          <h2 className=\"font-display text-4xl md:text-6xl text-white leading-[0.95] mb-10\">
+            {lang === \"es\"
+              ? <>Aplica a la <span className=\"text-[#F66234]\">red.</span></>
+              : <>Apply to the <span className=\"text-[#F66234]\">network.</span></>}
+          </h2>
+
+          <form data-testid=\"careers-form\" onSubmit={submit} className=\"bg-[#191919] border border-white/8 p-7 md:p-10 rounded-sm\">
+            <div className=\"grid md:grid-cols-2 gap-5\">
+              <input data-testid=\"careers-first\" required value={form.first} onChange={onChange(\"first\")} className=\"autech-input-dark\" placeholder={t.careers.form.first} />
+              <input data-testid=\"careers-last\" required value={form.last} onChange={onChange(\"last\")} className=\"autech-input-dark\" placeholder={t.careers.form.last} />
+              <input data-testid=\"careers-email\" required type=\"email\" value={form.email} onChange={onChange(\"email\")} className=\"autech-input-dark\" placeholder={t.careers.form.email} />
+              <input data-testid=\"careers-phone\" required value={form.phone} onChange={onChange(\"phone\")} className=\"autech-input-dark\" placeholder={t.careers.form.phone} />
+              <input data-testid=\"careers-city\" required value={form.city} onChange={onChange(\"city\")} className=\"autech-input-dark\" placeholder={t.careers.form.city} />
+              <input data-testid=\"careers-state\" required value={form.state} onChange={onChange(\"state\")} className=\"autech-input-dark\" placeholder={t.careers.form.state} />
+              <input data-testid=\"careers-experience\" value={form.experience} onChange={onChange(\"experience\")} className=\"autech-input-dark md:col-span-2\" placeholder={t.careers.form.experience} />
+              <input data-testid=\"careers-certs\" value={form.certs} onChange={onChange(\"certs\")} className=\"autech-input-dark md:col-span-2\" placeholder={t.careers.form.certs} />
+              <input data-testid=\"careers-vehicles\" value={form.vehicle_types} onChange={onChange(\"vehicle_types\")} className=\"autech-input-dark md:col-span-2\" placeholder={t.careers.form.vehicle_types} />
+              <textarea data-testid=\"careers-message\" rows={4} value={form.message} onChange={onChange(\"message\")} className=\"autech-input-dark md:col-span-2 resize-none\" placeholder={t.careers.form.message} />
+            </div>
+
+            <div className=\"mt-8 space-y-3\">
+              <label className=\"flex items-start gap-3 text-sm text-white/80 cursor-pointer\">
+                <input data-testid=\"careers-mvr\" type=\"checkbox\" checked={form.mvr} onChange={onChange(\"mvr\")} className=\"mt-1 accent-[#C8370B]\" />
+                <span>{t.careers.form.mvr_ack}</span>
+              </label>
+              <label className=\"flex items-start gap-3 text-sm text-white/80 cursor-pointer\">
+                <input data-testid=\"careers-sida\" type=\"checkbox\" checked={form.sida} onChange={onChange(\"sida\")} className=\"mt-1 accent-[#C8370B]\" />
+                <span>{t.careers.form.sida_ack}</span>
+              </label>
+              <label className=\"flex items-start gap-3 text-sm text-white/90 cursor-pointer\">
+                <input data-testid=\"careers-compliance\" required type=\"checkbox\" checked={form.compliance} onChange={onChange(\"compliance\")} className=\"mt-1 accent-[#C8370B]\" />
+                <span className=\"font-semibold\">{t.careers.form.compliance_ack}</span>
+              </label>
+            </div>
+
+            <div className=\"flex items-center justify-between flex-wrap gap-4 mt-10\">
+              {sent ? (
+                <div data-testid=\"careers-success\" className=\"text-[#F66234] font-semibold\">{t.careers.form.success}</div>
+              ) : (
+                <span className=\"label-pill text-white/40\">* {lang === \"es\" ? \"Marca la casilla de cumplimiento\" : \"Check the compliance box\"}</span>
+              )}
+              <button data-testid=\"careers-submit\" type=\"submit\" className=\"btn-primary\" style={{ background: \"#C8370B\", borderColor: \"#C8370B\" }}>
+                <span>{t.careers.form.submit}</span>
+                <span className=\"arrow-pill\" style={{ background: \"#151515\" }}>
+                  <ArrowUpRight size={16} color=\"#fff\" />
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default CareersPage;
+"
+
+app.js
+
+"import React from \"react\";
+import \"@/App.css\";
+import { BrowserRouter, Routes, Route } from \"react-router-dom\";
+import { LanguageProvider } from \"./i18n/LanguageContext\";
+import { Navbar } from \"./components/Navbar\";
+import { Footer } from \"./components/Footer\";
+import { WhatsAppFloat } from \"./components/WhatsAppFloat\";
+import { HomePage } from \"./pages/HomePage\";
+import { CareersPage } from \"./pages/CareersPage\";
+
+function App() {
+  return (
+    <LanguageProvider>
+      <BrowserRouter>
+        <div className=\"App\">
+          <Navbar />
+          <Routes>
+            <Route path=\"/\" element={<HomePage />} />
+            <Route path=\"/careers\" element={<CareersPage />} />
+          </Routes>
+          <Footer />
+          <WhatsAppFloat />
+        </div>
+      </BrowserRouter>
+    </LanguageProvider>
+  );
+}
+
+export default App;
+"
+
+hero
+
+"import React from \"react\";
+import { motion } from \"framer-motion\";
+import { ArrowUpRight } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+const HERO_IMG = \"https://images.pexels.com/photos/7018493/pexels-photo-7018493.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600\";
+const RING_IMG = \"https://images.unsplash.com/photo-1770705950498-d373e33ecb1a?crop=entropy&cs=srgb&fm=jpg&w=800&q=80\";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.8, delay: i * 0.08, ease: [0.2, 0.8, 0.2, 1] } }),
+};
+
+export const Hero = () => {
+  const { t } = useLang();
+
+  const scrollTo = (id) => {
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: \"smooth\", block: \"start\" });
+  };
+
+  return (
+    <section id=\"home\" data-testid=\"hero-section\" className=\"relative pt-28 md:pt-32 pb-0 dash-guides overflow-hidden\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+        {/* Top label row */}
+        <motion.div
+          initial=\"hidden\" animate=\"visible\" variants={fadeUp}
+          className=\"flex items-center justify-between mb-8 flex-wrap gap-3\"
+        >
+          <span className=\"label-pill text-[#151515]/60 flex items-center gap-2\">
+            <span className=\"text-[#C8370B]\">+</span> {t.hero.tag}
+          </span>
+          <span className=\"hidden md:inline label-pill text-[#151515]/60\">EST. 2020 · PR / FL / TX</span>
+        </motion.div>
+
+        {/* Headline */}
+        <motion.h1
+          initial=\"hidden\" animate=\"visible\" variants={fadeUp} custom={1}
+          className=\"font-display text-[14vw] md:text-[10vw] lg:text-[8.4vw] leading-[0.92] text-[#151515]\"
+        >
+          {t.hero.title_a}{\" \"}
+          <em className=\"not-italic text-[#C8370B]\">{t.hero.title_b}</em>
+        </motion.h1>
+
+        <div className=\"grid lg:grid-cols-12 gap-8 mt-10\">
+          <motion.div initial=\"hidden\" animate=\"visible\" variants={fadeUp} custom={2} className=\"lg:col-span-7\">
+            <p className=\"text-base md:text-lg text-[#151515]/70 max-w-2xl leading-relaxed\">{t.hero.sub}</p>
+            <div className=\"flex flex-wrap items-center gap-4 mt-8\">
+              <motion.button whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}
+                data-testid=\"hero-cta-primary\" onClick={() => scrollTo(\"#contact\")} className=\"btn-primary\">
+                <span>{t.hero.cta_a}</span>
+                <span className=\"arrow-pill\"><ArrowUpRight size={16} color=\"#fff\" /></span>
+              </motion.button>
+              <motion.button whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}
+                data-testid=\"hero-cta-secondary\" onClick={() => scrollTo(\"#about\")} className=\"btn-ghost\">
+                <span>{t.hero.cta_b}</span><ArrowUpRight size={16} />
+              </motion.button>
+            </div>
+          </motion.div>
+
+          <motion.div initial=\"hidden\" animate=\"visible\" variants={fadeUp} custom={3} className=\"lg:col-span-5\">
+            <div className=\"grid grid-cols-3 gap-2 border-t border-[#151515]/12 pt-6\">
+              {t.hero.stats.map((s, i) => (
+                <div key={i} className=\"px-2\">
+                  <div className=\"font-display text-3xl md:text-4xl text-[#151515]\">{s.k}</div>
+                  <div className=\"label-pill text-[#151515]/50 mt-2\">{s.v}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Image band */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4 }}
+          className=\"mt-12 md:mt-16 relative noise-bg rounded-sm overflow-hidden\"
+        >
+          <div className=\"aspect-[16/8] md:aspect-[16/7] relative\">
+            <motion.img
+              initial={{ scale: 1.08 }} animate={{ scale: 1 }} transition={{ duration: 1.4, ease: [0.2, 0.8, 0.2, 1] }}
+              src={HERO_IMG} alt=\"Mecánico móvil Autech\" className=\"absolute inset-0 w-full h-full object-cover\" />
+            <div className=\"absolute inset-0 bg-gradient-to-t from-[#151515]/75 via-[#151515]/25 to-transparent\" />
+            <div className=\"absolute bottom-6 left-6 right-6 flex items-end justify-between\">
+              <div className=\"text-white\">
+                <div className=\"label-pill text-white/70\">{t.hero.tag}</div>
+                <div className=\"font-display text-2xl md:text-3xl mt-1\">AUTECH <span className=\"text-[#F66234]\">/</span> ON SITE</div>
+              </div>
+              <div className=\"hidden md:flex items-center gap-2 text-white/80 label-pill\">
+                <span className=\"h-2 w-2 rounded-full bg-[#F66234] animate-pulse\" /> Live Dispatch
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Dual stats circles section (Manufact signature) */}
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 mt-20 md:mt-24 pb-16 md:pb-20\">
+        <div className=\"flex items-center gap-2 mb-6\">
+          <span className=\"text-[#C8370B]\">+</span>
+          <span className=\"label-pill text-[#151515]/60\">WHY US</span>
+        </div>
+        <div className=\"grid lg:grid-cols-12 gap-8 items-center\">
+          <div className=\"lg:col-span-7\">
+            <h2 className=\"font-display text-[7vw] md:text-[4.2vw] lg:text-[3.2vw] leading-[1.02] text-[#151515]\">
+              {t.about.title_a.replace(/\.$/, \"\")} technology, <span className=\"text-[#C8370B]\">{t.about.title_b.replace(/\.$/, \"\")}</span>, focused on mobile fleet excellence.
+            </h2>
+          </div>
+        </div>
+
+        <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 items-center\">
+          {/* Left white circle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+            className=\"aspect-square rounded-full bg-white border border-[#151515]/8 flex flex-col items-center justify-center p-8 text-center shadow-sm\"
+          >
+            <div className=\"label-pill text-[#151515]/40\">AUTECH /</div>
+            <div className=\"font-display text-7xl md:text-8xl text-[#151515] mt-1\">100<span className=\"text-[#C8370B]\">+</span></div>
+            <div className=\"text-sm text-[#151515]/60 mt-3 max-w-[200px]\">{t.hero.tag.split('·')[0].trim()}</div>
+          </motion.div>
+
+          {/* Center image circle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
+            className=\"aspect-square rounded-full overflow-hidden relative noise-bg\"
+          >
+            <img src={RING_IMG} alt=\"Engine close-up\" className=\"absolute inset-0 w-full h-full object-cover\" />
+            <div className=\"absolute inset-0 bg-gradient-to-t from-[#151515]/60 to-transparent\" />
+          </motion.div>
+
+          {/* Right orange circle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
+            className=\"aspect-square rounded-full bg-[#C8370B] flex flex-col items-center justify-center p-8 text-center shadow-lg shadow-[#C8370B]/15\"
+          >
+            <div className=\"label-pill text-white/70\">// TECHNICIANS</div>
+            <div className=\"font-display text-7xl md:text-8xl text-white mt-1\">20<span className=\"text-white/70\">+</span></div>
+            <div className=\"text-sm text-white/85 mt-3 max-w-[200px]\">Certified mobile mechanics nationwide</div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
+"
+
+whatsapp float
+
+"import React from \"react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+// Cleaner WhatsApp logo using official brand icon
+const WA_NUMBER = \"17870000000\";
+
+export const WhatsAppFloat = () => {
+  const { t } = useLang();
+  const msg = encodeURIComponent(\"Hola Autech, me interesa información sobre sus servicios.\");
+  const href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+
+  return (
+    <a
+      href={href}
+      target=\"_blank\"
+      rel=\"noopener noreferrer\"
+      data-testid=\"whatsapp-float\"
+      aria-label={t.whatsapp}
+      className=\"fixed bottom-5 right-5 md:bottom-7 md:right-7 z-40 group\"
+    >
+      <span className=\"relative inline-flex items-center justify-center\">
+        <span className=\"absolute inset-0 rounded-full wa-pulse\" />
+        <span className=\"relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#25D366] flex items-center justify-center shadow-xl shadow-[#25D366]/40 transition-transform group-hover:scale-110\">
+          {/* Official WhatsApp glyph */}
+          <svg viewBox=\"0 0 24 24\" width=\"30\" height=\"30\" fill=\"#fff\" aria-hidden=\"true\">
+            <path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.768.967-.941 1.165-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.057 2C6.55 2 2.13 6.408 2.13 11.892c0 1.741.467 3.435 1.354 4.928L2 22l5.305-1.39a9.92 9.92 0 0 0 4.75 1.207h.004c5.508 0 9.927-4.408 9.927-9.892C22 6.408 17.563 2 12.057 2zm0 18.13a8.16 8.16 0 0 1-4.158-1.142l-.299-.177-3.094.81.825-3.014-.194-.31a8.13 8.13 0 0 1-1.249-4.405c0-4.498 3.645-8.157 8.137-8.157 2.18 0 4.225.85 5.769 2.392a8.094 8.094 0 0 1 2.392 5.78c0 4.498-3.645 8.165-8.129 8.165z\" />
+          </svg>
+        </span>
+      </span>
+      <span className=\"hidden md:block absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-[#151515] text-white text-xs font-medium px-3 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity\">
+        {t.whatsapp}
+      </span>
+    </a>
+  );
+};
+
+export default WhatsAppFloat;
+"
+
+index.css edited
+
+body {
+  margin: 0;
+  background: #F6F6F6;
+  background-image:
+    url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>\");
+  background-attachment: fixed;
+  color: var(--autech-black);
+  font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: 'ss01', 'cv01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+index.css edited
+
+.dash-guides {
+  position: relative;
+}
+.dash-guides::before {
+  content: \"\";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(21,21,21,0.16) 0 6px, transparent 6px 14px);
+  background-size: 1px 100%;
+  background-repeat: no-repeat;
+  background-position:
+    8.333% 0, 16.66% 0, 25% 0, 33.33% 0, 41.66% 0, 50% 0,
+    58.33% 0, 66.66% 0, 75% 0, 83.33% 0, 91.66% 0;
+  /* Build multiple vertical dashed lines */
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(21,21,21,0.14) 0 6px, transparent 6px 14px),
+    repeating-linear-gradient(to bottom, rgba(21,21,21,0.14) 0 6px, transparent 6px 14px),
+    repeating-linear-gradient(to bottom, rgba(21,21,21,0.14) 0 6px, transparent 6px 14px),
+    repeating-linear-gradient(to bottom, rgba(21,21,21,0.14) 0 6px, transparent 6px 14px),
+    repeating-linear-gradient(to bottom, rgba(21,21,21,0.14) 0 6px, transparent 6px 14px);
+  background-size: 1px 100%, 1px 100%, 1px 100%, 1px 100%, 1px 100%;
+  background-position: 16.66% 0, 33.33% 0, 50% 0, 66.66% 0, 83.33% 0;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+}
+
+.dash-guides-dark {
+  position: relative;
+}
+.dash-guides-dark::before {
+  content: \"\";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.08) 0 6px, transparent 6px 14px),
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.08) 0 6px, transparent 6px 14px),
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.08) 0 6px, transparent 6px 14px),
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.08) 0 6px, transparent 6px 14px),
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.08) 0 6px, transparent 6px 14px);
+  background-size: 1px 100%, 1px 100%, 1px 100%, 1px 100%, 1px 100%;
+  background-position: 16.66% 0, 33.33% 0, 50% 0, 66.66% 0, 83.33% 0;
+  background-repeat: no-repeat;
+}
+
+about edited
+import React from \"react\";
+import { motion } from \"framer-motion\";
+import { Wrench, BadgeCheck, MapPin, FileText } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+const ICONS = [Wrench, BadgeCheck, MapPin, FileText];
+
+export const About = () => {
+  const { t } = useLang();
+
+  return (
+    <section id=\"about\" data-testid=\"about-section\" className=\"relative py-24 md:py-32 dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 relative\">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className=\"flex items-center gap-2 mb-10\"
+        >
+          <span className=\"text-[#C8370B]\">+</span>
+          <span className=\"label-pill text-[#151515]/60\">{t.about.label}</span>
+        </motion.div>
+
+        <div className=\"grid lg:grid-cols-12 gap-10\">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+            className=\"lg:col-span-7\"
+          >
+            <h2 className=\"font-display text-[10vw] md:text-[6.5vw] lg:text-[5vw] leading-[0.95] text-[#151515]\">
+              {t.about.title_a}<br />
+              <span className=\"text-[#C8370B]\">{t.about.title_b}</span>
+            </h2>
+            <p className=\"text-base md:text-lg text-[#151515]/70 max-w-2xl mt-8 leading-relaxed\">
+              {t.about.body}
+            </p>
+          </motion.div>
+
+          <div className=\"lg:col-span-5\">
+            <div className=\"grid grid-cols-2 gap-3\">
+              {t.about.pillars.map((p, i) => {
+                const Icon = ICONS[i];
+                return (
+                  <motion.div
+                    key={i}
+                    data-testid={`about-pillar-${i}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: \"-50px\" }}
+                    transition={{ duration: 0.7, delay: i * 0.1, ease: [0.2, 0.8, 0.2, 1] }}
+                    whileHover={{ y: -4 }}
+                    className=\"group bg-white border border-[#151515]/8 p-5 rounded-sm\"
+                  >
+                    <div className=\"w-10 h-10 rounded-full bg-[#151515] flex items-center justify-center mb-4 group-hover:bg-[#C8370B] transition-colors\">
+                      <Icon size={18} color=\"#fff\" />
+                    </div>
+                    <div className=\"font-display text-lg text-[#151515]\">{p.t}</div>
+                    <div className=\"text-sm text-[#151515]/60 mt-2 leading-relaxed\">{p.d}</div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
+
+services edited
+import React, { useState } from \"react\";
+import { motion, AnimatePresence } from \"framer-motion\";
+import { Plus, Minus, Check } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+services edited
+                {isOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: \"auto\" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
+                    className=\"overflow-hidden\"
+                  >
+                    <div className=\"pb-8 grid lg:grid-cols-12 gap-6\">
+                      <div className=\"lg:col-start-2 lg:col-span-5 rounded-sm overflow-hidden\">
+                        <img src={IMAGES[i]} alt={item.t} className=\"w-full h-56 md:h-64 object-cover\" />
+                      </div>
+                      <div className=\"lg:col-span-5\">
+                        <p className=\"text-[#151515]/70 leading-relaxed md:hidden mb-4\">{item.d}</p>
+                        <div className=\"label-pill text-[#151515]/50 mb-3\">Features</div>
+                        <ul className=\"space-y-2\">
+                          {item.feats.map((f, j) => (
+                            <li key={j} className=\"flex items-start gap-3 text-[#151515]\">
+                              <span className=\"mt-1 w-5 h-5 rounded-full bg-[#C8370B]/12 flex items-center justify-center shrink-0\">
+                                <Check size={12} color=\"#C8370B\" />
+                              </span>
+                              <span className=\"text-sm md:text-base\">{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+services edited
+
+        <div className=\"border-t border-[#151515]/10\">
+          {t.services.items.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <motion.div
+                key={i}
+                data-testid={`service-row-${i}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: \"-30px\" }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className=\"border-b border-[#151515]/10 transition-colors\"
+              >
+
+services edited
+
+                  </motion.div>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+
+                      <div className="lg:col-span-5">
+                        <p className="text-[#151515]/70 leading-relaxed md:hidden mb-4">{item.d}</p>
+                        <div className="label-pill text-[#151515]/50 mb-3">Features</div>
+                        <ul className="space-y-2">
+                          {item.feats.map((f, j) => (
+                            <li key={j} className="flex items-start gap-3 text-[#151515]">
+                              <span className="mt-1 w-5 h-5 rounded-full bg-[#C8370B]/12 flex items-center justify-center shrink-0">
+                                <Check size={12} color="#C8370B" />
+                              </span>
+                              <span className="text-sm md:text-base">{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;
+
+
+                  </motion.div>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+
+                        <button
+                  type=\"button\"
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  className=\"w-full text-left grid grid-cols-12 gap-4 items-center py-6 group\"
+                >
+                  <div className=\"col-span-2 md:col-span-1\">
+                    <span className=\"font-mono text-sm text-[#151515]/40\">0{i + 1}</span>
+                  </div>
+                  <div className=\"col-span-7 md:col-span-5\">
+                    <span className=\"font-display text-xl md:text-2xl text-[#151515] group-hover:text-[#C8370B] transition-colors\">
+                      {item.t}
+                    </span>
+                  </div>
+                  <div className=\"hidden md:block md:col-span-5 text-sm text-[#151515]/60 max-w-md\">
+                    {item.d}
+                  </div>
+                  <div className=\"col-span-3 md:col-span-1 flex justify-end\">
+                    <motion.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.35 }}
+                      className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${isOpen ? \"bg-[#C8370B]\" : \"bg-[#151515]\"}`}
+                    >
+                      {isOpen ? <Minus size={16} color=\"#fff\" /> : <Plus size={16} color=\"#fff\" />}
+                    </motion.span>
+                  </div>
+                </button>
+
+                <AnimatePresence initial={false}>
+
+                  </motion.div>
+                )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+
+          {t.services.items.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <motion.div
+                key={i}
+                data-testid={`service-row-${i}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className="border-b border-[#151515]/10 transition-colors"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  className="w-full text-left grid grid-cols-12 gap-4 items-center py-6 group"
+                >
+                  <div className="col-span-2 md:col-span-1">
+                    <span className="font-mono text-sm text-[#151515]/40">0{i + 1}</span>
+                  </div>
+                  <div className="col-span-7 md:col-span-5">
+                    <span className="font-display text-xl md:text-2xl text-[#151515] group-hover:text-[#C8370B] transition-colors">
+                      {item.t}
+                    </span>
+                  </div>
+                  <div className="hidden md:block md:col-span-5 text-sm text-[#151515]/60 max-w-md">
+                    {item.d}
+                  </div>
+                  <div className="col-span-3 md:col-span-1 flex justify-end">
+                    <motion.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.35 }}
+                      className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${isOpen ? "bg-[#C8370B]" : "bg-[#151515]"}`}
+                    >
+                      {isOpen ? <Minus size={16} color="#fff" /> : <Plus size={16} color="#fff" />}
+                    </motion.span>
+                  </div>
+                </button>
+
+                <AnimatePresence initial={false}>
+
+                {isOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pb-8 grid lg:grid-cols-12 gap-6">
+                      <div className="lg:col-start-2 lg:col-span-5 rounded-sm overflow-hidden">
+                        <img src={IMAGES[i]} alt={item.t} className="w-full h-56 md:h-64 object-cover" />
+                      </div>
+                      <div className="lg:col-span-5">
+                        <p className="text-[#151515]/70 leading-relaxed md:hidden mb-4">{item.d}</p>
+                        <div className="label-pill text-[#151515]/50 mb-3">Features</div>
+                        <ul className="space-y-2">
+                          {item.feats.map((f, j) => (
+                            <li key={j} className="flex items-start gap-3 text-[#151515]">
+                              <span className="mt-1 w-5 h-5 rounded-full bg-[#C8370B]/12 flex items-center justify-center shrink-0">
+                                <Check size={12} color="#C8370B" />
+                              </span>
+                              <span className="text-sm md:text-base">{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+                  </motion.div>
+                )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+
+cta banner edited
+
+import React from \"react\";
+import { motion } from \"framer-motion\";
+import { ArrowUpRight } from \"lucide-react\";
+import { useLang } from \"../i18n/LanguageContext\";
+
+export const CTABanner = () => {
+  const { t } = useLang();
+  const scrollTo = (id) => {
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: \"smooth\", block: \"start\" });
+  };
+
+  return (
+    <section data-testid=\"cta-banner\" className=\"py-12 md:py-16 bg-[#F6F6F6]\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10\">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: \"-50px\" }}
+          transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
+          className=\"relative overflow-hidden rounded-sm border border-[#151515]/10 bg-[#151515] noise-bg p-7 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6\"
+          style={{
+            backgroundImage:
+              \"repeating-linear-gradient(135deg, rgba(200,55,11,0.14) 0 14px, transparent 14px 28px), linear-gradient(180deg, #151515, #191919)\",
+          }}
+        >
+          <h3 className=\"font-display text-3xl md:text-5xl text-white leading-[0.95]\">
+            {t.cta_banner.title_a}<br />
+            <span className=\"text-[#F66234]\">{t.cta_banner.title_b}</span>
+          </h3>
+          <motion.button
+            whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}
+            data-testid=\"cta-banner-btn\"
+            onClick={() => scrollTo(\"#contact\")}
+            className=\"btn-primary\"
+            style={{ background: \"#C8370B\", borderColor: \"#C8370B\" }}
+          >
+            <span>{t.cta_banner.btn}</span>
+            <span className=\"arrow-pill\" style={{ background: \"#151515\" }}>
+              <ArrowUpRight size={16} color=\"#fff\" />
+            </span>
+          </motion.button>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default CTABanner;
+
+whyus edited
+import React from \"react\";
+import { motion } from \"framer-motion\";
+import { useLang } from \"../i18n/LanguageContext\";
+import { Check } from \"lucide-react\";
+
+export const WhyUs = () => {
+  const { t } = useLang();
+
+  return (
+    <section data-testid=\"why-us-section\" className=\"py-24 md:py-32 bg-[#151515] relative overflow-hidden dash-guides-dark\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-12 gap-10 relative\">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className=\"lg:col-span-6\"
+        >
+          <div className=\"flex items-center gap-2 mb-6\">
+            <span className=\"text-[#F66234]\">+</span>
+            <span className=\"label-pill text-white/60\">{t.why.label}</span>
+          </div>
+          <h2 className=\"font-display text-[9vw] md:text-[5.5vw] lg:text-[4.4vw] leading-[0.95] text-white\">
+            {t.why.title.split(' ').slice(0, -1).join(' ')}{' '}
+            <span className=\"text-[#F66234]\">{t.why.title.split(' ').slice(-1)}</span>
+          </h2>
+        </motion.div>
+
+        <div className=\"lg:col-span-6 relative\">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className=\"absolute -top-3 -right-3 bg-[#C8370B] text-white label-pill px-3 py-2 rounded-full z-10\"
+          >
+            {t.why.badge}
+          </motion.div>
+          <ul className=\"space-y-3 bg-[#191919] border border-white/8 p-7 md:p-9 rounded-sm\">
+            {t.why.items.map((it, i) => (
+              <motion.li
+                key={i} data-testid={`why-item-${i}`}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className=\"flex items-start gap-4 py-3 border-b last:border-b-0 border-white/8\"
+              >
+                <span className=\"font-mono text-xs text-[#F66234] pt-1\">0{i + 1}</span>
+                <span className=\"text-white/85 text-sm md:text-base leading-relaxed flex-1\">{it}</span>
+                <Check size={18} color=\"#F66234\" className=\"mt-1 shrink-0\" />
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default WhyUs;
+
+services edited
+
+    <section id=\"services\" data-testid=\"services-section\" className=\"relative py-24 md:py-32 bg-white dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 relative\">
+      
+      
+industries edited
+
+    <section id=\"industries\" data-testid=\"industries-section\" className=\"py-24 md:py-32 bg-[#F6F6F6] dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 relative\">
+
+contacts edited
+
+    <section id=\"contact\" data-testid=\"contact-section\" className=\"py-24 md:py-32 bg-white dash-guides\">
+      <div className=\"max-w-[1440px] mx-auto px-5 md:px-10 relative\">
+
+
+hero edited
+
+        <div className=\"grid lg:grid-cols-12 gap-8 items-center\">
+          <div className=\"lg:col-span-7\">
+            <h2 className=\"font-display text-[7vw] md:text-[4.2vw] lg:text-[3.2vw] leading-[1.02] text-[#151515]\">
+              {t.hero.dual_title_a}{\" \"}
+              <span className=\"text-[#C8370B]\">{t.hero.dual_title_b}</span>,{\" \"}
+              {t.hero.dual_title_c}
+            </h2>
+          </div>
+        </div>
+        |
+
+translation edited
+
+      stats: [
+        { k: \"24/7\", v: \"Despacho disponible\" },
+        { k: \"50+\", v: \"Estados cubiertos\" },
+        { k: \"0mi\", v: \"Meta de inactividad\" },
+      ],
+      dual_title_a: \"Impulsado por tecnología, respaldado por experiencia\",
+      dual_title_b: \"enfocado\",
+      dual_title_c: \"en la excelencia del servicio móvil de flotas.\",
+      dual_left_label: \"AUTECH /\",
+      dual_left_value: \"Trabajos servidos en 6 años\",
+      dual_right_label: \"// TÉCNICOS\",
+      dual_right_value: \"Mecánicos móviles certificados a nivel nacional\",
+    },      stats: [
+        { k: \"24/7\", v: \"Dispatch available\" },
+        { k: \"50+\", v: \"States covered\" },
+        { k: \"0mi\", v: \"Downtime goal\" },
+      ],
+      dual_title_a: \"Driven by technology, backed by experience\",
+      dual_title_b: \"focused\",
+      dual_title_c: \"on mobile fleet service excellence.\",
+      dual_left_label: \"AUTECH /\",
+      dual_left_value: \"Jobs serviced over 6 years\",
+      dual_right_label: \"// TECHNICIANS\",
+      dual_right_value: \"Certified mobile mechanics nationwide\",
+    },
+
+
+    hero edited
+
+              {/* Left white circle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+            className=\"aspect-square rounded-full bg-white border border-[#151515]/8 flex flex-col items-center justify-center p-8 text-center shadow-sm\"
+          >
+            <div className=\"label-pill text-[#151515]/40\">{t.hero.dual_left_label}</div>
+            <div className=\"font-display text-7xl md:text-8xl text-[#151515] mt-1\">10K<span className=\"text-[#C8370B]\">+</span></div>
+            <div className=\"text-sm text-[#151515]/60 mt-3 max-w-[200px]\">{t.hero.dual_left_value}</div>
+          </motion.div>
+
+                    {/* Right orange circle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
+            className=\"aspect-square rounded-full bg-[#C8370B] flex flex-col items-center justify-center p-8 text-center shadow-lg shadow-[#C8370B]/15\"
+          >
+            <div className=\"label-pill text-white/70\">{t.hero.dual_right_label}</div>
+            <div className=\"font-display text-7xl md:text-8xl text-white mt-1\">20<span className=\"text-white/70\">+</span></div>
+            <div className=\"text-sm text-white/85 mt-3 max-w-[200px]\">{t.hero.dual_right_value}</div>
+          </motion.div>
