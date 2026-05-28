@@ -4,7 +4,7 @@ import { scrollToSection } from "@/components/shared/scrollToSection";
 
 export default function HeroSection({ t }) {
   return (
-    <section id="home" data-testid="hero-section" className="relative pt-28 md:pt-32 pb-0 dash-guides">
+    <section id="home" data-testid="hero-section" className="relative pt-28 md:pt-32 pb-0">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10">
         <div className="flex items-center justify-between mb-8">
           <span className="label-pill text-[#151515]/60 flex items-center gap-2">

@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function ContactSection({ t, form, sent, onChange, submitContact }) {
   return (
-    <section id="contact" data-testid="contact-section" className="py-24 md:py-32 bg-white dash-guides">
+    <section id="contact" data-testid="contact-section" className="py-24 md:py-32 bg-white">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-5">
           <div className="flex items-center gap-2 mb-6">

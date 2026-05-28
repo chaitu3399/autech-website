@@ -2,7 +2,7 @@ import { BadgeCheck, FileText, MapPin, Wrench } from "lucide-react";
 
 export default function AboutSection({ t }) {
   return (
-    <section id="about" data-testid="about-section" className="relative py-24 md:py-32 dash-guides">
+    <section id="about" data-testid="about-section" className="relative py-24 md:py-32">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-7">
           <div className="flex items-center gap-2 mb-10">

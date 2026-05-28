@@ -5,7 +5,7 @@ export default function WhyUsSection({ t }) {
     <section
       id="why-us"
       data-testid="why-us-section"
-      className="py-24 md:py-32 bg-[#151515] relative overflow-hidden dash-guides-dark"
+      className="py-24 md:py-32 bg-[#151515] relative overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-6">

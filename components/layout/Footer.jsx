@@ -27,7 +27,6 @@ export default function Footer() {
 
   return (
     <footer data-testid="footer" className="bg-[#151515] text-white relative overflow-hidden">
-      <div className="absolute inset-0 dash-guides-dark pointer-events-none" />
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 py-16 md:py-20 relative">
         <div className="border-b border-white/10 pb-10 mb-10">
           <div className="font-display text-[18vw] md:text-[14vw] leading-[0.85] text-white/95 select-none">

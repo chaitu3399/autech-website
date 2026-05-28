@@ -3,7 +3,7 @@ import { SERVICES_IMAGES } from "@/components/shared/constants";
 
 export default function ServicesSection({ t, serviceOpen, setServiceOpen }) {
   return (
-    <section id="services" data-testid="services-section" className="relative py-24 md:py-32 bg-white dash-guides">
+    <section id="services" data-testid="services-section" className="relative py-24 md:py-32 bg-white">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10">
         <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
           <div>

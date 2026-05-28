@@ -3,7 +3,7 @@ import { INDUSTRIES_IMG } from "@/components/shared/constants";
 
 export default function IndustriesSection({ t, industryActive, setIndustryActive }) {
   return (
-    <section id="industries" data-testid="industries-section" className="py-24 md:py-32 bg-[#F6F6F6] dash-guides">
+    <section id="industries" data-testid="industries-section" className="py-24 md:py-32 bg-[#F6F6F6]">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">

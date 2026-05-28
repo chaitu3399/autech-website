@@ -81,7 +81,7 @@ export default function CareersSections() {
           />
         </div>
       </section>
-      <section className="py-20 md:py-24 dash-guides">
+      <section className="py-20 md:py-24">
         <div className="max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-2 mb-4">
@@ -102,7 +102,7 @@ export default function CareersSections() {
           </div>
         </div>
       </section>
-      <section className="py-20 md:py-24 bg-white dash-guides">
+      <section className="py-20 md:py-24 bg-white">
         <div className="max-w-[1440px] mx-auto px-5 md:px-10">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-[#C8370B]">+</span>
@@ -128,7 +128,7 @@ export default function CareersSections() {
           </div>
         </div>
       </section>
-      <section id="apply" className="py-24 md:py-32 bg-[#151515] relative overflow-hidden dash-guides-dark mt-16">
+      <section id="apply" className="py-24 md:py-32 bg-[#151515] relative overflow-hidden mt-16">
         <div className="max-w-[1440px] mx-auto px-5 md:px-10">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-[#F66234]">+</span>
