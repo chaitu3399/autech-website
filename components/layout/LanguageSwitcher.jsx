@@ -9,7 +9,9 @@ export default function LanguageSwitcher({ dark = false }) {
   const inactive = dark ? "text-white/40 hover:text-white/70" : "text-[#151515]/40 hover:text-[#151515]/70";
 
   return (
-    <div className={`inline-flex items-center gap-1 rounded-full border ${dark ? "border-white/15" : "border-[#151515]/15"} px-1 py-0.5`}>
+    <div
+      className={`inline-flex items-center gap-1 rounded-full border ${dark ? "border-white/15" : "border-[#151515]/15"} px-1 py-0.5`}
+    >
       <button type="button" onClick={() => setLang("es")} className={`${base} ${lang === "es" ? active : inactive}`}>
         ES
       </button>

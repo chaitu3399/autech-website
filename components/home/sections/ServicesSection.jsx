@@ -12,7 +12,8 @@ export default function ServicesSection({ t, serviceOpen, setServiceOpen }) {
               <span className="label-pill text-[#151515]/60">{t.services.label}</span>
             </div>
             <h2 className="font-display text-[9vw] md:text-[6vw] lg:text-[4.6vw] leading-[0.95] text-[#151515]">
-              {t.services.title_a} <span className="text-[#C8370B]">{t.services.title_b.split(" ").slice(0, 1)}</span> {t.services.title_b.split(" ").slice(1).join(" ")}
+              {t.services.title_a} <span className="text-[#C8370B]">{t.services.title_b.split(" ").slice(0, 1)}</span>{" "}
+              {t.services.title_b.split(" ").slice(1).join(" ")}
             </h2>
           </div>
         </div>
@@ -21,16 +22,24 @@ export default function ServicesSection({ t, serviceOpen, setServiceOpen }) {
             const isOpen = serviceOpen === i;
             return (
               <div key={i} data-testid={`service-row-${i}`} className="border-b border-[#151515]/10">
-                <button type="button" onClick={() => setServiceOpen(isOpen ? -1 : i)} className="w-full text-left grid grid-cols-12 gap-4 items-center py-6 group">
+                <button
+                  type="button"
+                  onClick={() => setServiceOpen(isOpen ? -1 : i)}
+                  className="w-full text-left grid grid-cols-12 gap-4 items-center py-6 group"
+                >
                   <div className="col-span-2 md:col-span-1">
                     <span className="font-mono text-sm text-[#151515]/40">0{i + 1}</span>
                   </div>
                   <div className="col-span-7 md:col-span-5">
-                    <span className="font-display text-xl md:text-2xl text-[#151515] group-hover:text-[#C8370B]">{item.t}</span>
+                    <span className="font-display text-xl md:text-2xl text-[#151515] group-hover:text-[#C8370B]">
+                      {item.t}
+                    </span>
                   </div>
                   <div className="hidden md:block md:col-span-5 text-sm text-[#151515]/60 max-w-md">{item.d}</div>
                   <div className="col-span-3 md:col-span-1 flex justify-end">
-                    <span className={`w-9 h-9 rounded-full flex items-center justify-center ${isOpen ? "bg-[#C8370B]" : "bg-[#151515]"}`}>
+                    <span
+                      className={`w-9 h-9 rounded-full flex items-center justify-center ${isOpen ? "bg-[#C8370B]" : "bg-[#151515]"}`}
+                    >
                       {isOpen ? <Minus size={16} color="#fff" /> : <Plus size={16} color="#fff" />}
                     </span>
                   </div>

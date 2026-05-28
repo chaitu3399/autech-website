@@ -40,7 +40,11 @@ export default function Footer() {
             <p className="text-white/60 text-sm leading-relaxed max-w-xs mt-5">{t.footer.tagline}.</p>
             <div className="flex items-center gap-3 mt-5">
               {[Linkedin, Instagram, Facebook].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center">
+                <a
+                  key={i}
+                  href="#"
+                  className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center"
+                >
                   <Icon size={15} />
                 </a>
               ))}
@@ -51,7 +55,10 @@ export default function Footer() {
             <ul className="space-y-3">
               {t.footer.links_items.map((l) => (
                 <li key={l.h}>
-                  <button onClick={() => goSection(l.h)} className="text-white/85 hover:text-[#F66234] transition-colors">
+                  <button
+                    onClick={() => goSection(l.h)}
+                    className="text-white/85 hover:text-[#F66234] transition-colors"
+                  >
                     {l.k}
                   </button>
                 </li>
@@ -70,7 +77,9 @@ export default function Footer() {
           <div>
             <div className="label-pill text-white/40 mb-4">{t.footer.network}</div>
             <p className="text-white/70 text-sm leading-relaxed mb-5">
-              {t.footer.network === "Únete a la red" ? "¿Eres mecánico móvil? Construye tu carrera con la red Autech." : "Mobile mechanic? Build your career with the Autech network."}
+              {t.footer.network === "Únete a la red"
+                ? "¿Eres mecánico móvil? Construye tu carrera con la red Autech."
+                : "Mobile mechanic? Build your career with the Autech network."}
             </p>
             <Link href="/careers" className="btn-primary" style={{ background: "#C8370B", borderColor: "#C8370B" }}>
               <span>{t.footer.network_cta}</span>

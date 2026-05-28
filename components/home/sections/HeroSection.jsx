@@ -21,7 +21,11 @@ export default function HeroSection({ t }) {
           <div className="lg:col-span-7">
             <p className="text-base md:text-lg text-[#151515]/70 max-w-2xl leading-relaxed">{t.hero.sub}</p>
             <div className="flex flex-wrap items-center gap-4 mt-8">
-              <button data-testid="hero-cta-primary" onClick={() => scrollToSection("#contact")} className="btn-primary">
+              <button
+                data-testid="hero-cta-primary"
+                onClick={() => scrollToSection("#contact")}
+                className="btn-primary"
+              >
                 <span>{t.hero.cta_a}</span>
                 <span className="arrow-pill">
                   <ArrowUpRight size={16} color="#fff" />

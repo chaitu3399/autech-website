@@ -47,7 +47,7 @@ export function LanguageProvider({ children }) {
       setLang,
       t: translations[lang],
     }),
-    [lang],
+    [lang]
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

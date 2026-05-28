@@ -51,20 +51,34 @@ export default function Navbar() {
         </Link>
         <nav className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
-            <button key={l.h} data-testid={`nav-link-${l.h.slice(1)}`} onClick={() => goSection(l.h)} className="px-4 py-2 text-sm font-medium text-[#151515] hover:text-[#C8370B] transition-colors">
+            <button
+              key={l.h}
+              data-testid={`nav-link-${l.h.slice(1)}`}
+              onClick={() => goSection(l.h)}
+              className="px-4 py-2 text-sm font-medium text-[#151515] hover:text-[#C8370B] transition-colors"
+            >
               {l.k}
             </button>
           ))}
         </nav>
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <button data-testid="navbar-cta-btn" onClick={() => goSection("#contact")} className="btn-primary hidden md:inline-flex">
+          <button
+            data-testid="navbar-cta-btn"
+            onClick={() => goSection("#contact")}
+            className="btn-primary hidden md:inline-flex"
+          >
             <span>{t.nav.cta}</span>
             <span className="arrow-pill">
               <ArrowUpRight size={16} color="#fff" />
             </span>
           </button>
-          <button data-testid="mobile-menu-toggle" onClick={() => setMobileOpen((v) => !v)} className="lg:hidden p-2 text-[#151515]" aria-label="Toggle menu">
+          <button
+            data-testid="mobile-menu-toggle"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="lg:hidden p-2 text-[#151515]"
+            aria-label="Toggle menu"
+          >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
@@ -73,7 +87,11 @@ export default function Navbar() {
         <div data-testid="mobile-menu" className="lg:hidden bg-[#F6F6F6] border-t border-[#151515]/8">
           <div className="px-5 py-4 flex flex-col gap-1">
             {links.map((l) => (
-              <button key={l.h} onClick={() => goSection(l.h)} className="text-left py-3 text-base font-semibold text-[#151515] border-b border-[#151515]/8">
+              <button
+                key={l.h}
+                onClick={() => goSection(l.h)}
+                className="text-left py-3 text-base font-semibold text-[#151515] border-b border-[#151515]/8"
+              >
                 {l.k}
               </button>
             ))}

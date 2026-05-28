@@ -15,7 +15,11 @@ export default function ShowcaseSection() {
         </div>
         <div className="aspect-square rounded-full overflow-hidden relative noise-bg">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://images.unsplash.com/photo-1770705950498-d373e33ecb1a?crop=entropy&cs=srgb&fm=jpg&w=800&q=80" alt="Engine close-up" className="absolute inset-0 w-full h-full object-cover" />
+          <img
+            src="https://images.unsplash.com/photo-1770705950498-d373e33ecb1a?crop=entropy&cs=srgb&fm=jpg&w=800&q=80"
+            alt="Engine close-up"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/60 to-transparent" />
         </div>
         <div className="aspect-square rounded-full bg-[#C8370B] flex flex-col items-center justify-center p-8 text-center shadow-lg shadow-[#C8370B]/15">

@@ -37,7 +37,9 @@ export const metadata = {
       "Soporte técnico de flotas sin fronteras. Red móvil certificada para vehículos comerciales y generadores industriales.",
     locale: "es_PR",
     alternateLocale: "en_US",
-    images: ["https://customer-assets.emergentagent.com/job_147afd9a-d9b2-4013-8897-cdb34863bb32/artifacts/wp2s29lw_autech_logo.png"],
+    images: [
+      "https://customer-assets.emergentagent.com/job_147afd9a-d9b2-4013-8897-cdb34863bb32/artifacts/wp2s29lw_autech_logo.png",
+    ],
   },
   twitter: {
     card: "summary_large_image",

@@ -25,13 +25,46 @@ export default function ContactSection({ t, form, sent, onChange, submitContact 
           </div>
         </div>
         <div className="lg:col-span-7">
-          <form data-testid="contact-form" onSubmit={submitContact} className="bg-[#F6F6F6] border border-[#151515]/8 p-7 md:p-10 rounded-sm">
+          <form
+            data-testid="contact-form"
+            onSubmit={submitContact}
+            className="bg-[#F6F6F6] border border-[#151515]/8 p-7 md:p-10 rounded-sm"
+          >
             <div className="grid md:grid-cols-2 gap-5">
-              <input required value={form.first} onChange={onChange("first")} className="autech-input" placeholder={t.contact.form.first} />
-              <input required value={form.last} onChange={onChange("last")} className="autech-input" placeholder={t.contact.form.last} />
-              <input value={form.company} onChange={onChange("company")} className="autech-input" placeholder={t.contact.form.company} />
-              <input value={form.phone} onChange={onChange("phone")} className="autech-input" placeholder={t.contact.form.phone} />
-              <input required type="email" value={form.email} onChange={onChange("email")} className="autech-input md:col-span-2" placeholder={t.contact.form.email} />
+              <input
+                required
+                value={form.first}
+                onChange={onChange("first")}
+                className="autech-input"
+                placeholder={t.contact.form.first}
+              />
+              <input
+                required
+                value={form.last}
+                onChange={onChange("last")}
+                className="autech-input"
+                placeholder={t.contact.form.last}
+              />
+              <input
+                value={form.company}
+                onChange={onChange("company")}
+                className="autech-input"
+                placeholder={t.contact.form.company}
+              />
+              <input
+                value={form.phone}
+                onChange={onChange("phone")}
+                className="autech-input"
+                placeholder={t.contact.form.phone}
+              />
+              <input
+                required
+                type="email"
+                value={form.email}
+                onChange={onChange("email")}
+                className="autech-input md:col-span-2"
+                placeholder={t.contact.form.email}
+              />
               <select value={form.type} onChange={onChange("type")} className="autech-input md:col-span-2">
                 {t.contact.form.type_options.map((o, i) => (
                   <option key={i} value={i === 0 ? "" : o} disabled={i === 0}>
@@ -39,10 +72,20 @@ export default function ContactSection({ t, form, sent, onChange, submitContact 
                   </option>
                 ))}
               </select>
-              <textarea value={form.message} onChange={onChange("message")} rows={4} className="autech-input md:col-span-2 resize-none" placeholder={t.contact.form.message} />
+              <textarea
+                value={form.message}
+                onChange={onChange("message")}
+                rows={4}
+                className="autech-input md:col-span-2 resize-none"
+                placeholder={t.contact.form.message}
+              />
             </div>
             <div className="flex items-center justify-between flex-wrap gap-4 mt-8">
-              {sent ? <div className="text-[#C8370B] font-semibold">{t.contact.form.success}</div> : <span className="label-pill text-[#151515]/40">* Required fields</span>}
+              {sent ? (
+                <div className="text-[#C8370B] font-semibold">{t.contact.form.success}</div>
+              ) : (
+                <span className="label-pill text-[#151515]/40">* Required fields</span>
+              )}
               <button data-testid="contact-submit" type="submit" className="btn-primary">
                 <span>{t.contact.form.submit}</span>
                 <span className="arrow-pill">
