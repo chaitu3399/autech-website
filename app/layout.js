@@ -1,7 +1,9 @@
 import { Archivo, JetBrains_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import { LanguageProvider } from "@/components/language-provider";
-import SiteScaffold from "@/components/layout/SiteScaffold";
+import SiteShell from "@/components/layout/SiteShell";
+import { parseLang, DEFAULT_LANG } from "@/lib/lang";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -48,10 +50,22 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const cookieStore = await cookies();
+  const initialLang = parseLang(cookieStore.get("autech_lang")?.value ?? DEFAULT_LANG);
+
   return (
-    <html lang="es" className={`${archivo.variable} ${jetBrainsMono.variable}`}>
+    <html lang={initialLang} suppressHydrationWarning className={`${archivo.variable} ${jetBrainsMono.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://images.pexels.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+      </head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var l=localStorage.getItem("autech_lang");if(l==="en"||l==="es"){document.cookie="autech_lang="+l+";path=/;max-age=31536000;SameSite=Lax"}}catch(e){}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -73,8 +87,8 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-        <LanguageProvider>
-          <SiteScaffold>{children}</SiteScaffold>
+        <LanguageProvider initialLang={initialLang}>
+          <SiteShell>{children}</SiteShell>
         </LanguageProvider>
       </body>
     </html>

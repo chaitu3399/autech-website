@@ -1,5 +1,5 @@
-import CareersPageContent from "@/components/careers/CareersPageContent";
+import CareersPage from "@/components/pages/CareersPage";
 
-export default function CareersPage() {
-  return <CareersPageContent />;
+export default function CareersPageRoute() {
+  return <CareersPage />;
 }

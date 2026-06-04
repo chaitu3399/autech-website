@@ -1,45 +1,53 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useSyncExternalStore } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { translations } from "@/lib/translations";
+import { DEFAULT_LANG, LANG_STORAGE, langCookieValue, parseLang } from "@/lib/lang";
 
 const LanguageContext = createContext(null);
-const STORAGE_KEY = "autech_lang";
-const DEFAULT_LANG = "es";
 
-function parseLang(value) {
-  return value === "es" || value === "en" ? value : DEFAULT_LANG;
+function readStoredLang() {
+  if (typeof window === "undefined") return DEFAULT_LANG;
+  return parseLang(window.localStorage.getItem(LANG_STORAGE));
 }
 
-function getClientLang() {
-  return parseLang(window.localStorage.getItem(STORAGE_KEY));
+function persistLang(value) {
+  window.localStorage.setItem(LANG_STORAGE, value);
+  document.cookie = langCookieValue(value);
 }
 
-function subscribe(callback) {
-  if (typeof window === "undefined") return () => {};
+export function LanguageProvider({ children, initialLang = DEFAULT_LANG }) {
+  const [lang, setLangState] = useState(() => parseLang(initialLang));
 
-  const onChange = () => callback();
-  window.addEventListener("storage", onChange);
-  window.addEventListener("autech-lang-change", onChange);
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      const stored = readStoredLang();
+      setLangState(stored);
+      persistLang(stored);
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, []);
 
-  return () => {
-    window.removeEventListener("storage", onChange);
-    window.removeEventListener("autech-lang-change", onChange);
-  };
-}
-
-export function LanguageProvider({ children }) {
-  const lang = useSyncExternalStore(subscribe, getClientLang, () => DEFAULT_LANG);
-
-  const setLang = (nextLang) => {
+  const setLang = useCallback((nextLang) => {
     const value = parseLang(nextLang);
-    window.localStorage.setItem(STORAGE_KEY, value);
+    persistLang(value);
+    setLangState(value);
     window.dispatchEvent(new Event("autech-lang-change"));
-  };
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
+
+  useEffect(() => {
+    const sync = () => setLangState(readStoredLang());
+    window.addEventListener("storage", sync);
+    window.addEventListener("autech-lang-change", sync);
+    return () => {
+      window.removeEventListener("storage", sync);
+      window.removeEventListener("autech-lang-change", sync);
+    };
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -47,7 +55,7 @@ export function LanguageProvider({ children }) {
       setLang,
       t: translations[lang],
     }),
-    [lang]
+    [lang, setLang]
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

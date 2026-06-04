@@ -1,5 +1,9 @@
-import HomePageContent from "@/components/home/HomePageContent";
+import HomePage from "@/components/pages/HomePage";
 
-export default function Home() {
-  return <HomePageContent />;
+export default async function Home({ searchParams }) {
+  const params = await searchParams;
+  const initialService = params?.service ?? null;
+  const initialIndustry = params?.industry ?? null;
+
+  return <HomePage initialService={initialService} initialIndustry={initialIndustry} />;
 }

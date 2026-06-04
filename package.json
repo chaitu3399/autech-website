@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "design:review": "node scripts/design-review.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.552.0",
@@ -20,6 +21,7 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "playwright": "^1.60.0",
     "prettier": "^3.8.3",
     "tailwindcss": "^4"
   }
